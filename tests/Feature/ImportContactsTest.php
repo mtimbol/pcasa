@@ -17,14 +17,32 @@ class ImportContactsTest extends TestCase
         // User should have a permission to import contacts.
 
         // Upload contacts.csv
-        $response = $this->json('GET', '/', [
-            // 'file' => '/import/contacts.csv'
+        $response = $this->json('POST', '/contacts/import', [
+            'file' => '/import/contacts.csv'
         ]);
 
+        // $response->dump();
 
         // $response->assertStatus(200);
 
+        // $this->assertDatabaseHas('developers', [
+        //     'id' => 1,
+        //     'name' => 'NAKHEEL',
+        // ]);
+
+        // $this->assertDatabaseHas('communities', [
+        //     'id' => 1,
+        //     'name' => 'Al Furjan'
+        // ]);
+
+        // $response->dump();
+
         $this->assertDatabaseHas('contacts', [
+            'id' => 1,
+            'country' => 'UAE',
+            'city' => 'Dubai',
+            'developer' => 'NAKHEEL',
+            'community' => 'Al Furjan',
             'salutation' => 'MR',
             'full_name' => 'Achraf Cherkaoui',
             'email' => 'a.cherkaoui@gmail.com',
@@ -34,5 +52,14 @@ class ImportContactsTest extends TestCase
             'client_type' => 'LANDLORD',
         ]);
 
+        // $this->assertDatabaseHas('developer_contacts', [
+        //     'developer_id' => 1,
+        //     'contact_id' => 1,
+        // ]);
+
+        // $this->assertDatabaseHas('community_contacts', [
+        //     'community_id' => 1,
+        //     'contact_id' => 1,
+        // ]);
     }
 }

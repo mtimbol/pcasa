@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Community extends Model
+class Developer extends Model
 {
     protected $fillable = ['name'];
 
     public function contacts()
     {
-    	return $this->belongsToMany(Contact::class, 'community_contacts');
+    	return $this->belongsToMany('App\Contact', 'developer_contacts');
     }
 }

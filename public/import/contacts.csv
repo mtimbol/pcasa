@@ -1,3 +1,3 @@
-developer,community,subcommunity,property_number,property_type,client_type,salutation,full_name,email,mobile,phone,fax
-NAKHEEL,Al Furjan,,AFA2D1V5B-117,APARTMENT,LANDLORD,MR,Achraf Cherkaoui,a.cherkaoui@gmail.com,971505599530,97143297171,97143297272
-NAKHEEL,Al Furjan,,AFA2D1V5B-120,VILLA,BUYER,MR,Saleem Ahmed Mirza,anisnyc@yahoo.com,971505349524,97142233713,
+country,city,area,developer,community,subcommunity,property_number,property_type,client_type,salutation,full_name,email,mobile,phone,fax
+UAE,Dubai,,NAKHEEL,Al Furjan,,AFA2D1V5B-117,APARTMENT,LANDLORD,MR,Achraf Cherkaoui,a.cherkaoui@gmail.com,971505599530,97143297171,97143297272
+UAE,Dubai,,NAKHEEL,Al Furjan,,AFA2D1V5B-120,VILLA,BUYER,MR,Saleem Ahmed Mirza,anisnyc@yahoo.com,971505349524,97142233713,

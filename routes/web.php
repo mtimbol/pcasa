@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::get('/', 'ImportContactsController@store');
+// Route::get('/', 'ImportContactsController@store');
 Route::post('contacts/import', 'ImportContactsController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
