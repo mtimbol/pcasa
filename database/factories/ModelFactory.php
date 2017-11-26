@@ -22,3 +22,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Contact::class, function (Faker\Generator $faker) {
+    return [
+        'country' => 'UAE',
+        'city' => 'Dubai',
+        'area' => null,
+        'developer' => 'NAKHEEL',
+        'community' => 'Al Furjan',
+        'subcommunity' => null,
+        'salutation' => 'MR',
+        'full_name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'mobile' => '0568201789',
+        'phone' => '02 820 7189',
+        'fax' => '02 820 7189',
+        'property_number' => null,
+        'property_type' => null,
+        'client_type' => 'Buyer',
+        'notes' => null,
+    ];
+});

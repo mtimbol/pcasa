@@ -11,9 +11,11 @@
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
-// Route::get('/', 'ImportContactsController@store');
 Route::post('contacts/import', 'ImportContactsController@store');
+Route::post('contacts/', 'Admin\ContactsController@store');
+Route::put('contacts/{contact}', 'Admin\ContactsController@update');
+Route::put('contacts/import/update-skipped', 'UpdateSkippedContactsController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
