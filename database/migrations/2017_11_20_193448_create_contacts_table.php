@@ -15,35 +15,33 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('contact_status')->nullable();
+            $table->string('client_type')->nullable();
             // Personal information
             $table->string('salutation')->nullable();
-            $table->string('full_name');
-            $table->string('passport_number')->nullable();
+            $table->string('name');
+            $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('nationality')->nullable();
-            // $table->string('passport_expiry')->nullable();
-            // $table->date('birthdate')->nullable();
-            // Contact information
-            $table->string('email')->unique();
-            $table->string('mobile')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('fax')->nullable();
             // Company information
             $table->string('company')->nullable();
             $table->string('position')->nullable();
-
-            // Property information
-            $table->string('property_number')->nullable();
-            $table->string('property_type')->nullable();
-            $table->string('developer')->nullable();
-            $table->string('community')->nullable();
-            $table->string('subcommunity')->nullable();
-            $table->string('area')->nullable();
-            $table->string('city')->nullable();
-            $table->string('country')->nullable();
-            // Contact statuses
-            $table->string('contact_status')->nullable();
+            // Contact information
+            $table->string('email')->unique();
+            $table->string('email2')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('mobile2')->nullable();
+            $table->string('mobile3')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('fax')->nullable();
+            // Other contact information
+            $table->string('passport_number')->nullable();
+            // $table->date('passport_expiry')->nullable();
+            $table->string('id_number')->nullable();
+            // $table->date('id_expiry')->nullable();
+            // $table->date('birthdate')->nullable();
             $table->string('source')->nullable();
-            $table->string('client_type')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

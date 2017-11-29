@@ -26,6 +26,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::model('contact', \App\Contact::class);
+        Route::model('property', \App\Property::class);
     }
 
     /**

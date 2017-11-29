@@ -7,12 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     protected $fillable = [
-    	'salutation', 'full_name', 'passport_number', 'nationality',
-    	'email', 'mobile', 'phone', 'fax',
+        'contact_status', 'client_type',
+    	'salutation', 'name', 'first_name', 'middle_name', 'last_name', 'nationality',
     	'company', 'position',
-    	'property_number', 'property_type', 'developer', 'community', 'subcommunity', 'area', 'city', 'country',
-    	'contact_status', 'source', 'client_type', 'notes'
+        'email', 'email2', 'mobile', 'mobile2', 'mobile3', 'phone', 'fax',
+        'passport_number', 'id_number',
+    	'source', 'notes'
     ];
+
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class, 'property_contacts');
+    }
+
+    public function interestedIn($properties)
+    {
+        return $this->properties()->attach($properties);
+    }
 
     public static function exists($value)
     {

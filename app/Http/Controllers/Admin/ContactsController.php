@@ -11,7 +11,11 @@ class ContactsController extends Controller
 	public function store(Request $request)
 	{
 		// TODO: Validate request
-		Contact::create($request->all());
+		$contact = Contact::create($request->all());
+
+		if ($request->has('properties')) {
+			$contact->interestedIn($request->properties);
+		}
 	}
 
     public function update(Request $request, Contact $contact)

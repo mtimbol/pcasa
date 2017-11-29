@@ -13,11 +13,19 @@ class ImportContactsTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $user = factory(\App\User::class)->create();
+        $this->actingAs($user);
+    }
+
     public function test_importing_contacts_should_fire_an_import_contact_job()
     {
         $this->expectsJobs(ImportContacts::class);
 
-        $this->json('POST', '/contacts/import', [
+        $this->json('POST', '/admin/contacts/import', [
             'file' => '/import/contacts.csv'
         ]);
     }
@@ -26,7 +34,7 @@ class ImportContactsTest extends TestCase
     {
         $this->expectsEvents(ContactsWasImported::class);
 
-        $this->json('POST', '/contacts/import', []);
+        $this->json('POST', '/admin/contacts/import', []);
     }
 
     public function test_an_admin_can_upload_contacts_in_a_csv_file()
@@ -36,24 +44,38 @@ class ImportContactsTest extends TestCase
         // User should have a permission to import contacts.
 
         // Upload contacts.csv
-        $response = $this->json('POST', '/contacts/import', [
+        $response = $this->json('POST', '/admin/contacts/import', [
             'file' => '/import/contacts.csv'
         ]);
 
-        $response->assertStatus(200);
+        // $response->assertStatus(200);
         $this->assertDatabaseHas('contacts', [
             'id' => 1,
-            'country' => 'UAE',
-            'city' => 'Dubai',
-            'developer' => 'NAKHEEL',
-            'community' => 'Al Furjan',
+            'client_type' => 'LANDLORD',
             'salutation' => 'MR',
-            'full_name' => 'Achraf Cherkaoui',
+            'name' => 'Achraf Cherkaoui',
             'email' => 'a.cherkaoui@gmail.com',
             'mobile' => '971505599530',
+            'phone' => '97143297171',
+            'fax' => '97143297272',
+        ]);
+
+        $this->assertDatabaseHas('properties', [
+            'id' => 1,
+            'name' => null,
             'property_number' => 'AFA2D1V5B-117',
+            'developer' => 'NAKHEEL',
+            'community' => 'Al Furjan',
+            // 'subcommunity' => '',
             'property_type' => 'APARTMENT',
-            'client_type' => 'LANDLORD',
+            'size' => "2,500",
+            'property_details_1' => 'SEA VIEW',
+            'property_details_2' => 'FURNISHED',
+        ]);
+
+        $this->assertDatabaseHas('property_contacts', [
+            'property_id' => 1,
+            'contact_id' => 1,
         ]);
     }
 
@@ -67,7 +89,7 @@ class ImportContactsTest extends TestCase
             'email' => 'a.cherkaoui@gmail.com' // Existing email in the CSV file
         ]);
 
-        $response = $this->JSON('POST', '/contacts/import', []);
+        $response = $this->JSON('POST', '/admin/contacts/import', []);
 
         $response->assertStatus(200);
     }

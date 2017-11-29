@@ -26,21 +26,44 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Contact::class, function (Faker\Generator $faker) {
     return [
-        'country' => 'UAE',
-        'city' => 'Dubai',
-        'area' => null,
-        'developer' => 'NAKHEEL',
-        'community' => 'Al Furjan',
-        'subcommunity' => null,
-        'salutation' => 'MR',
-        'full_name' => $faker->name,
+        'contact_status' => 'lead',
+        'client_type' => 'landlord',
+        // Personal information
+        'salutation' => $faker->title,
+        'name' => $faker->name,
+        'first_name' => $faker->firstName,
+        'middle_name' => '',
+        'last_name' => $faker->lastName,
+        'nationality' => $faker->country,
+        // Company information
+        'company' => $faker->company,
+        'position' => $faker->jobTitle,
+        // Contact information
         'email' => $faker->unique()->safeEmail,
-        'mobile' => '0568201789',
-        'phone' => '02 820 7189',
-        'fax' => '02 820 7189',
-        'property_number' => null,
-        'property_type' => null,
-        'client_type' => 'Buyer',
-        'notes' => null,
+        'email2' => $faker->unique()->safeEmail,
+        'mobile' => $faker->phoneNumber,
+        'mobile2' => $faker->phoneNumber,
+        'mobile3' => $faker->phoneNumber,
+        'phone' => $faker->phoneNumber,
+        'fax' => $faker->phoneNumber,
+        // Other contact information
+        'passport_number' => $faker->randomNumber,
+        'id_number' => $faker->randomNumber,
+        'source' => 'propertyfinder',
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Property::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'property_number' => $faker->randomNumber,
+        'developer' => $faker->sentence,
+        'community' => $faker->city,
+        'property_type' => 'VILLA',
+        'bedrooms' => 3,
+        'unit_type' => $faker->word,
+        'size' => 2500,
+        'view' => $faker->paragraph
     ];
 });

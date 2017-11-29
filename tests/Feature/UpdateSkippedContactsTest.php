@@ -21,22 +21,22 @@ class UpdateSkippedContactsTest extends TestCase
     	$skipped_contacts = [];
 
         factory(\App\Contact::class)->create([
-        	'city' => 'Abu Dhabi',
+        	'salutation' => 'MR',
             'email' => 'a.cherkaoui@gmail.com', // Existing email in the CSV file
         ]);
 
         $skipped_contacts[] = factory(\App\Contact::class)->make([
         	'email' => 'a.cherkaoui@gmail.com',
-        	'city' => 'Dubai'
+        	'salutation' => 'MS'
         ]);
 
-        $response = $this->JSON('PUT', '/contacts/import/update-skipped', [
+        $response = $this->JSON('PUT', '/admin/contacts/import/update-skipped', [
         	'contacts' => $skipped_contacts
         ]);
         
         $this->assertDatabaseHas('contacts', [
         	'email' => 'a.cherkaoui@gmail.com',
-        	'city' => 'Dubai'        	
+        	'salutation' => 'MS'	
         ]);
     }
 }
