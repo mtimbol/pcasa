@@ -14,7 +14,10 @@
 // Auth::routes();
 
 Route::group(['prefix' => 'admin'], function() {
-	Route::post('contacts/', 'Admin\ContactsController@store');
+	Route::get('/', 'Admin\AdminController@index')->name('admin.index');
+	Route::get('contacts', 'Admin\ContactsController@index')->name('admin.contacts.index');
+	Route::get('contacts/create', 'Admin\ContactsController@create')->name('admin.contacts.create');
+	Route::post('contacts', 'Admin\ContactsController@store');
 	Route::put('contacts/{contact}', 'Admin\ContactsController@update');
 	Route::post('contacts/import', 'Admin\ImportContactsController@store');
 	Route::put('contacts/import/update-skipped', 'Admin\UpdateSkippedContactsController@update');
@@ -27,3 +30,7 @@ Route::group(['prefix' => 'admin'], function() {
 Route::get('/', function() {
 	return 'hi';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
