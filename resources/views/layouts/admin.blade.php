@@ -11,8 +11,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/vendor.css" rel="stylesheet">
+
+    @yield('header_styles')
 </head>
 <body class="px-8">
     <div class="flex pt-6 pb-2">
@@ -22,10 +24,10 @@
         <div class="w-full px-4">
             <div class="flex">
                 <div class="w-full">
-                    <div class="w-2/5">
+                    <div class="w-3/5">
                         <div class="relative">
                             <i class="fa fa-search absolute text-grey-dark mt-2 ml-3"></i>
-                            <input class="shadow border rounded w-full px-3 py-2 pl-8" placeholder="Search for contacts" />
+                            <input class="shadow border rounded w-full px-3 py-2 pl-8" placeholder="Search by lead name or email address" />
                         </div>
                     </div>
                 </div>
@@ -81,9 +83,21 @@
                         <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-black">
                             <i class="fa fa-user-circle mr-1"></i> Leads
                         </a>
-                    </li>                    
+                    </li> 
                 </ul>
             </div>
+            <div class="mb-8">
+                <p class="mb-4 text-grey uppercase tracking-wide font-bold text-xs">
+                    Properties
+                </p>
+                <ul class="list-reset">
+                    <li class="mb-3">
+                        <a href="{{ route('admin.properties.index') }}" class="no-underline text-grey-darker hover:text-black">
+                            <i class="fa fa-building mr-1"></i> Listings
+                        </a>
+                    </li>                                        
+                </ul>
+            </div>            
             <div class="mb-8">
                 <p class="mb-4 text-grey uppercase tracking-wide font-bold text-xs">
                     Statistics
@@ -107,7 +121,7 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
+    @yield('footer_scripts')
 </body>
 </html>

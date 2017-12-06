@@ -11,6 +11,20 @@ class ManagePropertiesTest extends TestCase
 {
 	use DatabaseMigrations;
 
+    public function test_an_authorized_person_can_view_listings_page()
+    {
+        $response = $this->get('/admin/properties');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_an_authorized_person_can_view_create_listings_page()
+    {
+        $response = $this->get('/admin/properties/create');
+
+        $response->assertStatus(200);
+    }    
+
     public function test_an_authorized_person_can_create_property()
     {
     	$response = $this->json('POST', '/admin/properties', [

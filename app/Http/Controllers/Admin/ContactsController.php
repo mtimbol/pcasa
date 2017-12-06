@@ -9,9 +9,11 @@ class ContactsController extends Controller
 {
 	public function index()
 	{
+		$alertTitle = 'Contacts';
 		$contacts = \App\Contact::orderBy('name', 'asc')->get();
-		// dd($contacts->toArray());		
-		return view('admin.contacts.index', compact('contacts'));
+		// flash('New contact was successfully created.')->success();
+
+		return view('admin.contacts.index', compact('contacts', 'alertTitle'));
 	}
 
 	public function create()
