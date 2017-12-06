@@ -45,7 +45,7 @@ class ImportContactsTest extends TestCase
 
         // Upload contacts.csv
         $response = $this->json('POST', '/admin/contacts/import', [
-            'file' => '/import/contacts.csv'
+            'csv' => '/import/contacts.csv'
         ]);
 
         // $response->assertStatus(200);

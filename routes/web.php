@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('contacts/create', 'Admin\ContactsController@create')->name('admin.contacts.create');
 	Route::post('contacts', 'Admin\ContactsController@store');
 	Route::put('contacts/{contact}', 'Admin\ContactsController@update');
+	Route::get('contacts/import', 'Admin\ImportContactsController@index')->name('admin.contacts.import.index');
 	Route::post('contacts/import', 'Admin\ImportContactsController@store');
 	Route::put('contacts/import/update-skipped', 'Admin\UpdateSkippedContactsController@update');
 

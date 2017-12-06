@@ -22,7 +22,7 @@ class CreatePropertiesTable extends Migration
             $table->string('property_type')->nullable();
             $table->integer('bedrooms')->nullable();
             $table->string('unit_type')->nullable();
-            $table->integer('size')->nullable();
+            $table->string('size')->nullable();
             $table->string('view')->nullable();
             $table->string('property_details_1')->nullable();
             $table->string('property_details_2')->nullable();

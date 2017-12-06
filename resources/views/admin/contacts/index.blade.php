@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h1 class="text-grey-dark font-semibold py-4">Contacts</h1>
+	{{-- <h1 class="text-grey-dark font-semibold py-4">Contacts</h1> --}}
 
 	<div class="w-full bg-white rounded shadow">
 		<div class="flex justify-between pb-6 px-6 py-6">
@@ -14,7 +14,7 @@
 				<a href="{{ route('admin.contacts.create') }}" class="bg-white border border-solid border-grey-light shadow py-2 px-4 rounded text-grey-dark hover:text-black no-underline">
 					<i class="fa fa-plus mr-1"></i> New
 				</a>
-				<a href="#" class="bg-white border border-solid border-grey-light shadow py-2 px-4 rounded text-grey-dark hover:text-black no-underline ml-1">
+				<a href="{{ route('admin.contacts.import.index') }}" class="bg-white border border-solid border-grey-light shadow py-2 px-4 rounded text-grey-dark hover:text-black no-underline ml-1">
 					<i class="fa fa-file-excel-o mr-1"></i> Import
 				</a>
 			</div>
@@ -31,22 +31,26 @@
 		<div class="py-6">
 			<table class="w-full">
 				<thead>
-					<tr class="bg-grey-light">
+					<tr class="bg-grey-lighter">
 						<th class="text-grey-darkest font-bold text-xs uppercase tracking-wide font-normal text-left py-3 px-4">Developer</th>
 						<th class="text-grey-darkest font-bold text-xs uppercase tracking-wide font-normal text-left py-3 px-4">Community</th>
 						<th class="text-grey-darkest font-bold text-xs uppercase tracking-wide font-normal text-left py-3 px-4">Full Name</th>
 						<th class="text-grey-darkest font-bold text-xs uppercase tracking-wide font-normal text-left py-3 px-4">Email</th>
+						<th class="text-grey-darkest font-bold text-xs uppercase tracking-wide font-normal text-left py-3 px-4">Client Type</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach (range(1,9) as $index)
-					<tr class="border-b hover:text-grey-darkest">
-						<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">NAKHEEL</td>
-						<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">Al Furjan</td>
-						<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">Mark Timbol</td>
-						<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">mark.timbol@hotmail.com</td>
-					</tr>
-					@endforeach								
+						@foreach ($contacts as $contact) 
+							<tr class="border-b hover:text-grey-darkest">
+								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">NAKHEEL</td>
+								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">Al Furjan</td>
+								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->name }}</td>
+								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->email }}</td>
+								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->client_type }}</td>
+							</tr>
+						@endforeach	
+					@endforeach							
 				</tbody>
 			</table>
 		</div>

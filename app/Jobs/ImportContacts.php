@@ -48,7 +48,22 @@ class ImportContacts implements ShouldQueue
             });
 
             collect($contacts)->each(function($row, $key) {
-                $contact = Contact::firstOrCreate(collect($row)->toArray());
+                // $contact = Contact::firstOrCreate(collect($row)->toArray());
+                $contact = Contact::firstOrCreate([
+                    'contact_status' => 'Follow up',
+                    'client_type' => $row->client_type,
+                    'salutation' => $row->salutation,
+                    'name' => $row->name,
+                    'first_name' => explode(' ', $row->name)[0],
+                    'last_name' => explode(' ', $row->name)[1],
+                    'nationality' => $row->nationality,
+                    'email' => $row->email,
+                    'mobile' => $row->mobile,
+                    'phone' => $row->phone,
+                    'fax' => $row->fax,
+                    'passport_number' => $row->passport_number,
+                    'source' => $row->database_source,
+                ]);
 
                 if ($property = Property::where('property_number', $row->property_number)->first()) {
 

@@ -11,13 +11,53 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendor.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="px-8">
+    <div class="flex pt-6 pb-2">
+        <div class="w-1/4 px-4">
+            <h1 class="text-grey-darker">Pcasa</h1>
+        </div>
+        <div class="w-full px-4">
+            <div class="flex">
+                <div class="w-full">
+                    <div class="w-2/5">
+                        <div class="relative">
+                            <i class="fa fa-search absolute text-grey-dark mt-2 ml-3"></i>
+                            <input class="shadow border rounded w-full px-3 py-2 pl-8" placeholder="Search for contacts" />
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/4">
+                    <div class="flex justify-end">
+                        <ul class="list-reset flex items-center">
+                            <li class="mx-2">
+                                <a href="#">
+                                    <i class="fa fa-bullhorn text-grey text-xl"></i>
+                                </a>
+                            </li>                        
+                            <li class="mx-2">
+                                <a href="#">
+                                    <i class="fa fa-book text-grey text-xl"></i>
+                                </a>
+                            </li>                        
+                            <li class="mx-2">
+                                <a href="#">
+                                    <i class="fa fa-bell text-grey text-xl"></i>
+                                </a>
+                            </li>
+                            <li class="ml-2">
+                                <img src="/images/avatar.jpeg" alt="" title="" class="rounded-full w-8 h-8 mt-1 shadow" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
     <div class="flex">
-        <div class="w-1/4 px-6 py-6">
-            <h3 class="py-8 text-grey-dark font-semibold">Navigation</h3>
+        <div class="w-1/4 px-4 py-4 mt-3">
             <div class="mb-8">
                 <ul class="list-reset">
                     <li class="mb-3">
