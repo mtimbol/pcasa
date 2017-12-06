@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-	<h1 class="text-grey-darker font-semibold py-4">Create new contact</h1>
+	<h1 class="text-grey-darker font-semibold py-4">Import contacts</h1>
 
 	<form method="POST">
 		{{ csrf_field() }}
