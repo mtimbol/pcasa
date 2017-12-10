@@ -52,25 +52,19 @@ class ImportContactsTest extends TestCase
         $this->assertDatabaseHas('contacts', [
             'id' => 1,
             'client_type' => 'LANDLORD',
-            'salutation' => 'MR',
-            'name' => 'Achraf Cherkaoui',
-            'email' => 'a.cherkaoui@gmail.com',
-            'mobile' => '971505599530',
-            'phone' => '97143297171',
-            'fax' => '97143297272',
+            'salutation' => 'Mr.',
+            'name' => 'Mark Timbol',
+            'email' => 'mark@timbol.com',
+            'mobile' => '971568207189',
         ]);
 
         $this->assertDatabaseHas('properties', [
             'id' => 1,
-            'name' => null,
-            'property_number' => 'AFA2D1V5B-117',
-            'developer' => 'NAKHEEL',
-            'community' => 'Al Furjan',
-            // 'subcommunity' => '',
-            'property_type' => 'APARTMENT',
-            'size' => "2,500",
-            'property_details_1' => 'SEA VIEW',
-            'property_details_2' => 'FURNISHED',
+            // 'name' => null,
+            'property_number' => 'J-316',
+            'developer' => 'EMAAR',
+            'community' => 'RM2 Mira Oasis',
+            'size' => "2,359",
         ]);
 
         $this->assertDatabaseHas('property_contacts', [

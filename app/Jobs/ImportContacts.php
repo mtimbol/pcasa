@@ -51,32 +51,33 @@ class ImportContacts implements ShouldQueue
                 // $contact = Contact::firstOrCreate(collect($row)->toArray());
                 $contact = Contact::firstOrCreate([
                     'contact_status' => 'Follow up',
-                    'client_type' => $row->client_type,
-                    'salutation' => $row->salutation,
-                    'name' => $row->name,
-                    'first_name' => explode(' ', $row->name)[0],
-                    'last_name' => explode(' ', $row->name)[1],
-                    'nationality' => $row->nationality,
+                    'client_type' => $row->client_type ?? null,
+                    'salutation' => $row->salutation ?? null,
+                    'name' => $row->full_name ?? null,
+                    'first_name' => explode(' ', $row->full_name)[0] ?? null,
+                    'last_name' => explode(' ', $row->full_name)[1] ?? null,
+                    'nationality' => $row->nationality ?? null,
                     'email' => $row->email,
                     'mobile' => $row->mobile,
-                    'phone' => $row->phone,
-                    'fax' => $row->fax,
-                    'passport_number' => $row->passport_number,
-                    'source' => $row->database_source,
+                    'phone' => $row->phone ?? null,
+                    'fax' => $row->fax ?? null,
+                    'passport_number' => $row->passport_number ?? null,
+                    'source' => $row->database_source ?? null,
+                    'notes' => $row->notes ?? null,
                 ]);
 
                 if ($property = Property::where('property_number', $row->property_number)->first()) {
 
                 } else {
                     $property = Property::create([
-                        'property_number' => $row->property_number,
+                        'property_number' => $row->property_number ?? 'dummy',
                         'developer' => $row->developer,
                         'community' => $row->community,
-                        'subcommunity' => $row->subcommunity,
-                        'property_type' => $row->property_type,
-                        'size' => $row->property_size,
-                        'property_details_1' => $row->property_details_1,
-                        'property_details_2' => $row->property_details_2,
+                        'subcommunity' => $row->subcommunity ?? null,
+                        'property_type' => $row->property_type ?? null,
+                        'size' => $row->property_size ?? null,
+                        'property_details_1' => $row->property_details_1 ?? null,
+                        'property_details_2' => $row->property_details_2 ?? null,
                     ]);
                 }
 

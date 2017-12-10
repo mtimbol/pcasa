@@ -41,11 +41,11 @@
 					@foreach (range(1,9) as $index)
 						@foreach ($contacts as $contact) 
 							<tr class="border-b hover:text-grey-darkest">
-								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">NAKHEEL</td>
-								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">Al Furjan</td>
-								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->name }}</td>
-								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->email }}</td>
-								<td class="text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->client_type }}</td>
+								<td class="text-xs text-grey-darker hover:text-grey-darkest px-4 py-3">NAKHEEL</td>
+								<td class="text-xs text-grey-darker hover:text-grey-darkest px-4 py-3">Al Furjan</td>
+								<td class="text-xs text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->name }}</td>
+								<td class="text-xs text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->email }}</td>
+								<td class="text-xs text-grey-darker hover:text-grey-darkest px-4 py-3">{{ $contact->client_type }}</td>
 							</tr>
 						@endforeach	
 					@endforeach							

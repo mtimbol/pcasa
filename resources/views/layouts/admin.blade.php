@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-black">
+                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-black">
                             <i class="fa fa-user-circle mr-1"></i> Leads
                         </a>
                     </li> 
@@ -95,21 +95,48 @@
                         <a href="{{ route('admin.properties.index') }}" class="no-underline text-grey-darker hover:text-black">
                             <i class="fa fa-building mr-1"></i> Listings
                         </a>
-                    </li>                                        
+                    </li>  
+                    <li class="mb-3">
+                        <a href="#" class="no-underline text-grey hover:text-black">
+                            <i class="fa fa-building mr-1"></i> Developers
+                        </a>
+                    </li>                                                           
                 </ul>
-            </div>            
+            </div> 
+            <div class="mb-8">
+                <p class="mb-4 text-grey uppercase tracking-wide font-bold text-xs">
+                    Locations
+                </p>
+                <ul class="list-reset">
+                    <li class="mb-3">
+                        <a href="#" class="no-underline text-grey hover:text-black">
+                            <i class="fa fa-globe mr-1"></i> Countries
+                        </a>
+                    </li>  
+                    <li class="mb-3">
+                        <a href="#" class="no-underline text-grey hover:text-black">
+                            <i class="fa fa-building mr-1"></i> Cities
+                        </a>
+                    </li> 
+                    <li class="mb-3">
+                        <a href="#" class="no-underline text-grey hover:text-black">
+                            <i class="fa fa-building mr-1"></i> Communities
+                        </a>
+                    </li>                                                                               
+                </ul>
+            </div>                        
             <div class="mb-8">
                 <p class="mb-4 text-grey uppercase tracking-wide font-bold text-xs">
                     Statistics
                 </p>
                 <ul class="list-reset">
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-black">
+                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-black">
                             <i class="fa fa-line-chart mr-1"></i> Statistics
                         </a>
                     </li>
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-black">
+                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-black">
                             <i class="fa fa-file-archive-o mr-1"></i> Archive
                         </a>
                     </li>                    

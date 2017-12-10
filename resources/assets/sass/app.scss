@@ -11,3 +11,13 @@ body {
 table {
 	border-collapse: collapse;
 }
+
+ul.table-actions {
+	display: none;
+}
+
+table tbody tr:hover {
+	ul.table-actions {
+		display: block;
+	}
+}

@@ -14,8 +14,7 @@ class ImportContactsController extends Controller
 	}
 
     public function store(Request $request)
-    {
-    	dd($request->all());
+    {        
     	$file = 'public/import/contacts.csv';
     	if ($request->hasFile('csv')) {
     		$file = $request->csv;

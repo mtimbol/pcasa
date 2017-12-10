@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,9 +11,8 @@ class ContactsController extends Controller
 	public function index()
 	{
 		$alertTitle = 'Contacts';
-		$contacts = \App\Contact::orderBy('name', 'asc')->get();
-		// flash('New contact was successfully created.')->success();
-
+		$contacts = Contact::orderBy('name', 'asc')->get();
+		
 		return view('admin.contacts.index', compact('contacts', 'alertTitle'));
 	}
 
