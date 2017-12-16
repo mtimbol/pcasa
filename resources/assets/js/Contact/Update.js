@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 class UpdateContact extends React.Component
 {
@@ -48,18 +49,37 @@ class UpdateContact extends React.Component
 			button_text: 'Updating contact'
 		})
 
+		const state = this.state;
 		axios.put('/admin/contacts/'+this.props.contact.id, {
-			data: this.state
+			salutation: state.salutation, 
+			name: state.name,
+			email: state.email,
+			phone: state.phone,
+			mobile: state.mobile,
+			company: state.company,
+			position: state.position,
+			contact_status: state.contact_status,
+			client_type: state.client_type
 		}).then(response => {
 			console.log(response);
+			if (response.data.status === 1 ) {
+				this.setState({
+					updating: false,
+					button_text: 'Update contact'
+				})				
+				swal({
+					title: 'Pcasa',
+					text: 'Contact has been successfully updated.',
+					icon: 'success'
+				})
+			}
 		}).catch(error => {
 			console.log(error);
-		});
-
-		this.setState({
-			updating: false,
-			button_text: 'Update contact'
-		})		
+			this.setState({
+				updating: false,
+				button_text: 'Update contact'
+			})				
+		});	
 
 	}
 
