@@ -1,6 +1,26 @@
 @extends('layouts.app')
+@section('bodyClass', 'h-screen')
 
 @section('content')
+
+<div class="flex items-center flex-col justify-center h-full">
+    <h1 class="text-grey-darkest py-6">Pcasa</h1>
+    <div class="w-1/2 bg-white shadow p-6">
+        <form method="POST" action="{{ route('password.request') }}">
+            {{ csrf_field() }}
+            <div class="w-full mb-6">
+                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
+                <input type="email" class="shadow border rounded w-full px-3 py-2" />
+            </div> 
+            <div class="w-full mb-6 text-left">
+                <button class="text-white bg-blue hover:bg-blue-dark rounded px-4 py-2">Reset Password</button>
+                <a href="{{ route('register') }}" class="text-black px-4 py-2 no-underline">Register</button>
+            </div> 
+        </form>
+    </div>
+</div>
+
+<?php /*
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -67,4 +87,5 @@
         </div>
     </div>
 </div>
+*/ ?>
 @endsection

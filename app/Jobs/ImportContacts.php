@@ -20,6 +20,10 @@ class ImportContacts implements ShouldQueue
 
     protected $excel;
 
+    protected $skippedContacts = [];
+
+    protected $newContacts = [];
+
     /**
      * Create a new job instance.
      *
@@ -36,21 +40,17 @@ class ImportContacts implements ShouldQueue
      * @return void
      */
     public function handle(Excel $excel)
-    {
-        $skipped_contacts = [];
-
-        // TODO
-        // Check if the contact is already existing on the database.
-        $excel->filter('chunk')->load($this->file)->chunk(1, function($contacts)
-        {
-            list($skipped_contacts, $contacts) = collect($contacts)->partition(function($contact) {
-                return Contact::whereEmail($contact->email)->first();
+    {        
+        $excel->load(public_path($this->file), function($contacts) {
+            list($this->skippedContacts, $this->newContacts) = collect($contacts->all())->partition(function($contact) {
+                return Contact::whereEmail($contact->email)->count() > 0;
             });
+        });
 
-            collect($contacts)->each(function($row, $key) {
-                // $contact = Contact::firstOrCreate(collect($row)->toArray());
+        foreach (collect($this->newContacts)->chunk(100) as $rows) {
+            foreach ($rows as $row) {
                 $contact = Contact::firstOrCreate([
-                    'contact_status' => 'Follow up',
+                    'contact_status' => null,
                     'client_type' => $row->client_type ?? null,
                     'salutation' => $row->salutation ?? null,
                     'name' => $row->full_name ?? null,
@@ -67,7 +67,7 @@ class ImportContacts implements ShouldQueue
                 ]);
 
                 if ($property = Property::where('property_number', $row->property_number)->first()) {
-
+                    // Skip
                 } else {
                     $property = Property::create([
                         'property_number' => $row->property_number ?? 'dummy',
@@ -81,10 +81,13 @@ class ImportContacts implements ShouldQueue
                     ]);
                 }
 
-                $property->contacts()->attach($contact);
-            });
-        });
+                $property->contacts()->attach($contact); 
+            }
+        }
 
-        event(new ContactsWasImported($skipped_contacts));
+        event(new ContactsWasImported($this->skippedContacts));
+        
+        return $this->skippedContacts;
+
     }
 }

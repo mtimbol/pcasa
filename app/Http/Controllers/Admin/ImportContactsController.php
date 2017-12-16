@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Jobs\ImportContacts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImportContactsController extends Controller
 {
@@ -14,12 +15,15 @@ class ImportContactsController extends Controller
 	}
 
     public function store(Request $request)
-    {        
-    	$file = 'public/import/contacts.csv';
-    	if ($request->hasFile('csv')) {
-    		$file = $request->csv;
-    	}
+    {
+    	// $path = $request->file('csv')->store('imports');
 
-        dispatch(new ImportContacts($file));
+    	$this->validate($request, [
+    		'csv' => 'required'
+    	]);
+
+    	// Storage::disk('local')->put($request->csv);
+
+        dispatch(new ImportContacts($request->csv));
     }
 }

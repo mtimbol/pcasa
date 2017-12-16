@@ -3047,19 +3047,3 @@ body {
   background-color: #f1f5f9;
   font-family: 'Open Sans', sans-serif;
 }
-
-table {
-  border-collapse: collapse;
-}
-
-ul.table-actions {
-  display: none;
-}
-
-table th.text-xs {
-  font-size: 10px;
-}
-
-table tbody tr:hover ul.table-actions {
-  display: block;
-}

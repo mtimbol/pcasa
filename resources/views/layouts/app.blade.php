@@ -11,9 +11,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/vendor.css" rel="stylesheet">
+    <link href="/css/public.css" rel="stylesheet">
 </head>
-<body>
+<body class="@yield('bodyClass')">
+    <?php /*
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -73,8 +75,7 @@
 
         @yield('content')
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    */ ?>
+    @yield('content')
 </body>
 </html>

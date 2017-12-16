@@ -11,9 +11,17 @@ class ContactsController extends Controller
 	public function index()
 	{
 		$alertTitle = 'Contacts';
-		$contacts = Contact::orderBy('name', 'asc')->get();
+		$contacts = Contact::with(['properties' => function($query) {
+			$query->get(['community', 'name', 'property_number']);
+		}])->orderBy('name', 'asc')->get();
+		// dd($contacts->toArray());
 		
 		return view('admin.contacts.index', compact('contacts', 'alertTitle'));
+	}
+
+	public function show($contact)
+	{
+		return view('admin.contacts.show', compact('contact'));
 	}
 
 	public function create()

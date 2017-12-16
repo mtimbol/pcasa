@@ -35,18 +35,18 @@
                     <div class="flex justify-end">
                         <ul class="list-reset flex items-center">
                             <li class="mx-2">
-                                <a href="#">
-                                    <i class="fa fa-bullhorn text-grey text-xl"></i>
+                                <a href="#" class="text-grey hover:text-grey-darker">
+                                    <i class="fa fa-bullhorn text-xl"></i>
                                 </a>
                             </li>                        
                             <li class="mx-2">
-                                <a href="#">
-                                    <i class="fa fa-book text-grey text-xl"></i>
+                                <a href="#" class="text-grey hover:text-grey-darker">
+                                    <i class="fa fa-book text-xl"></i>
                                 </a>
                             </li>                        
                             <li class="mx-2">
-                                <a href="#">
-                                    <i class="fa fa-bell text-grey text-xl"></i>
+                                <a href="#" class="text-grey hover:text-grey-darker">
+                                    <i class="fa fa-bell text-xl"></i>
                                 </a>
                             </li>
                             <li class="ml-2">
@@ -141,7 +141,23 @@
                         </a>
                     </li>                    
                 </ul>
-            </div>            
+            </div>  
+            <div class="mb-8">
+                <ul class="list-reset">
+                    <li class="mb-3">
+                        <a href="{{ route('logout') }}" class="no-underline text-red hover:text-red-dark"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"
+                        >
+                            <i class="fa fa-power-off mr-1"></i> Logout
+                        </a>
+                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>                        
+                    </li>
+                </ul>
+            </div>                      
         </div>
         <div class="w-full px-4 py-4">
             @yield('content')

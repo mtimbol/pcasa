@@ -24,32 +24,42 @@ class ImportContacts extends React.Component
 			buttonText: 'Importing'
 		})
 
+	    let data = new FormData();
+	    data.append('csv', document.getElementById('csv').files[0]);
+
 		axios({
 			method: 'post',
 			url: '/admin/contacts/import',
-			data: {
-				csv: this.state.csv
-			}
+			data: data
 		}).then(response => {
 			console.log(response);
-			if (response.status === 200) {
+			// if (response.status === 200) {
+			// 	swal({
+			// 		title: 'Pcasa',
+			// 		text: 'Importing contacts has been successfully finished.',
+			// 		icon: 'success'
+			// 	})
+			// 	this.setState({
+			// 		formWasSubmitted: false,
+			// 		buttonText: 'Import'
+			// 	})				
+			// }
+		}).catch(error => {
+			// No file uploaded
+			if (error.response.status === 422) {				
 				swal({
-					title: 'Pcasa',
-					text: 'Importing contacts has been successfully finished.',
-					icon: 'success'
+					title: 'Oops.',
+					text: error.response.data.csv,
+					icon: 'error'
 				})
-				this.setState({
-					formWasSubmitted: false,
-					buttonText: 'Import'
+			} else {
+				swal({
+					title: 'Oops.',
+					text: 'Something went wrong. ' + error.message,
+					icon: 'error'
 				})				
 			}
-		}).catch(error => {
-			console.log(error);
-			swal({
-				title: 'Oops.',
-				text: 'Something went wrong while importing contacts. ' + error.message,
-				icon: 'error'
-			})
+
 			this.setState({
 				formWasSubmitted: false,
 				buttonText: 'Import'
@@ -89,7 +99,7 @@ class ImportContacts extends React.Component
 							<div className="flex mb-6">
 								<div className="w-full">
 									<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-4">Browse CSV</label>
-									<input type="file" name="csv" className="shadow border rounded w-full px-3 py-2" onChange={e => this.setState({ csv: e.target.value })} />
+									<input type="file" name="csv" id="csv" className="shadow border rounded w-full px-3 py-2" onChange={e => this.setState({ csv: e.target.value })} />
 								</div>
 							</div>
 						</div>

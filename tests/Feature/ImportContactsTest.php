@@ -25,16 +25,22 @@ class ImportContactsTest extends TestCase
     {
         $this->expectsJobs(ImportContacts::class);
 
-        $this->json('POST', '/admin/contacts/import', [
-            'file' => '/import/contacts.csv'
+        $response = $this->json('POST', '/admin/contacts/import', [
+            'csv' => 'import/contacts.csv'
         ]);
+
+        // $response->dump();
     }
 
     public function test_it_fires_an_event_when_the_importing_of_contacts_is_finished()
     {
         $this->expectsEvents(ContactsWasImported::class);
 
-        $this->json('POST', '/admin/contacts/import', []);
+        $response = $this->json('POST', '/admin/contacts/import', [
+            'csv' => 'import/contacts.csv'
+        ]);
+
+        // $response->dump();
     }
 
     public function test_an_admin_can_upload_contacts_in_a_csv_file()
@@ -76,15 +82,18 @@ class ImportContactsTest extends TestCase
     public function test_skip_contacts_that_are_already_saved_in_the_database()
     {
         factory(\App\Contact::class)->create([
-            'email' => 'a.cherkaoui@gmail.com',
+            'email' => 'mark@timbol.com',
         ]);
 
         $this->assertDatabaseHas('contacts', [
-            'email' => 'a.cherkaoui@gmail.com' // Existing email in the CSV file
+            'email' => 'mark@timbol.com' // Existing email in the CSV file
         ]);
 
-        $response = $this->JSON('POST', '/admin/contacts/import', []);
+        $response = $this->JSON('POST', '/admin/contacts/import', [
+            'csv' => '/import/contacts.csv'
+        ]);
 
+        // $response->dump();
         $response->assertStatus(200);
     }
 }

@@ -14,9 +14,11 @@ let tailwindcss = require('tailwindcss');
 
 mix.js('resources/assets/js/app.js', 'public/js');
 mix.sass('resources/assets/sass/app.scss', 'public/css')
+mix.sass('resources/assets/sass/public.scss', 'public/css')
 mix.sass('resources/assets/sass/vendor.scss', 'public/css')
 mix.js('resources/assets/js/vendor.js', 'public/js')
 mix.js('resources/assets/js/alert.js', 'public/js')
+mix.js('resources/assets/js/ContactLists.js', 'public/js/contact-lists.js')
 mix.react('resources/assets/js/ImportContacts.js', 'public/js')
 	.options({
 		processCssUrls: false,

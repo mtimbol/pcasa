@@ -26,6 +26,7 @@ class NotifyAdministrator
      */
     public function handle(ContactsWasImported $event)
     {
-        //
+        // return $event->skipped_contacts;
+        return 'hi';
     }
 }

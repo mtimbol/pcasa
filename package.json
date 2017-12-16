@@ -21,9 +21,11 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
+    "match-sorter": "^2.2.0",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-table": "^6.7.5",
     "sweetalert": "^2.0.8"
   }
 }

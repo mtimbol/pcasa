@@ -14,16 +14,16 @@ class ContactsWasImported
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $skipped_contacts;
+    public $skippedContacts;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($skipped_contacts)
+    public function __construct($skippedContacts)
     {
-        $this->skipped_contacts = $skipped_contacts;
+        $this->skippedContacts = $skippedContacts;
     }
 
     /**
