@@ -25,7 +25,7 @@ class UpdateContact extends React.Component
 
 	componentDidMount()
 	{
-		let contact = this.props.contact;
+		let { contact } = this.props;
 
 		this.setState({
 			salutation: contact.salutation, 
@@ -50,7 +50,9 @@ class UpdateContact extends React.Component
 		})
 
 		const state = this.state;
-		axios.put('/admin/contacts/'+this.props.contact.id, {
+		const contact_id = this.props.contact.id;
+
+		axios.put('/admin/contacts/'+contact_id, {
 			salutation: state.salutation, 
 			name: state.name,
 			email: state.email,
@@ -66,12 +68,13 @@ class UpdateContact extends React.Component
 				this.setState({
 					updating: false,
 					button_text: 'Update contact'
-				})				
+				})
 				swal({
 					title: 'Pcasa',
 					text: 'Contact has been successfully updated.',
 					icon: 'success'
 				})
+				this.props.updateContactInformation(contact_id, response.data);
 			}
 		}).catch(error => {
 			console.log(error);
@@ -90,26 +93,27 @@ class UpdateContact extends React.Component
 			<form method="POST" onSubmit={this.updateProfile.bind(this)}>
 				<div className="flex p-4">
 					<div className="w-1/2 mr-8">
-						<h4 className="text-grey-dark mb-2">Contact Information</h4>
-						<p className="text-grey text-xs font-normal leading-normal mb-2">
+						<h4 className="text-grey-darker mb-2">Contact Information</h4>
+						<p className="text-grey-darker text-xs font-normal leading-normal mb-2">
 							TODO: If the email or phone is existing on the database, the fields will be automatically filled.
 						</p>
-						<p className="text-grey text-xs font-normal leading-normal">
+						<p className="text-grey-darker text-xs font-normal leading-normal">
 							Fields with (*) needs to be filled up.
 						</p>					
 					</div>
 					<div className="w-full">
 						<div className="flex mb-6">
 							<div className="w-1/2 mr-2">
-								<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Contact Status</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Contact Status</label>
 								<div className="inline-block relative w-full">
-									<select className="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow"
-										defaultValue={state.contact_status}
+									<select 
+										className="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow"
+										value={state.contact_status}
 										onChange={(e) => this.setState({ contact_status: e.target.value })}
 									>
 										<option value=""></option>
-										<option value="database">DATABASE</option>
-										<option value="lead">LEAD</option>
+										<option value="database">Database</option>
+										<option value="lead">Lead</option>
 										<option value="potential">Potential</option>
 										<option value="follow up">Follow up</option>
 										<option value="do not call">Do not call</option>
@@ -122,10 +126,10 @@ class UpdateContact extends React.Component
 								</div>							
 							</div>	
 							<div className="w-1/2 ml-2">
-								<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Client Type</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Client Type</label>
 								<div className="inline-block relative w-full">
 									<select className="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow"
-										defaultValue={state.client_type}
+										value={state.client_type}
 										onChange={(e) => this.setState({ client_type: e.target.value })}
 									>
 										<option value=""></option>
@@ -144,26 +148,26 @@ class UpdateContact extends React.Component
 						</div>
 						<div className="flex mb-6">			
 							<div className="w-1/2 mr-2">
-								<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
 								<input value={state.email} onChange={(e) => this.setState({ email: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
 							</div>
 							<div className="w-1/2 ml-2">
-								<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Phone</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Phone</label>
 								<input value={state.phone} onChange={(e) => this.setState({ phone: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
 							</div>						
 						</div>
 						<div className="mb-2">
-							<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Full Name</label>
+							<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Full Name</label>
 						</div>
 						<div className="flex mb-6">
 							<div className="w-16 mr-2">
 								<div className="inline-block relative w-full">
 									<select 
 										className="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow"
-										defaultValue={state.salutation ? state.salutation : ''}
+										value={state.salutation}
 										onChange={(e) => this.setState({ salutation: e.target.value })}
 									>
-										<option value=''></option>
+										<option value=""></option>
 										<option value="Mr.">Mr.</option>
 										<option value="Ms.">Ms.</option>
 									</select>
@@ -183,22 +187,22 @@ class UpdateContact extends React.Component
 
 				<div className="flex p-4">
 					<div className="w-1/2 mr-8">
-						<h4 className="text-grey-dark mb-2">Company Information</h4>
-						<p className="text-grey text-xs font-normal leading-normal mb-2">
+						<h4 className="text-grey-darker mb-2">Company Information</h4>
+						<p className="text-grey-darker text-xs font-normal leading-normal mb-2">
 							Lorem ipsum dolor sit amet, consectetur adipisicing.
 						</p>
-						<p className="text-grey text-xs font-normal leading-normal">
+						<p className="text-grey-darker text-xs font-normal leading-normal">
 							Fields with (*) needs to be filled up.
 						</p>					
 					</div>
 					<div className="w-full">
 						<div className="flex mb-6">
 							<div className="w-1/2 mr-2">
-								<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Company</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Company</label>
 								<input value={state.company} onChange={(e) => this.setState({ company: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
 							</div>
 							<div className="w-1/2 ml-2">
-								<label className="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Position</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Position</label>
 								<input value={state.position} onChange={(e) => this.setState({ position: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
 							</div>	
 						</div>

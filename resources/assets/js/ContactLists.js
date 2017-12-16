@@ -6,8 +6,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 import matchSorter from 'match-sorter';
-
 import UpdateContact from './Contact/Update';
+import update from 'immutability-helper'
 
 class ContactLists extends React.Component
 {
@@ -35,6 +35,21 @@ class ContactLists extends React.Component
 			.catch(error => {
 				console.log(error);
 			})
+	}
+
+	updateContactInformation(id, data) {
+		console.log('updateContactInformation function.');
+		console.log('contact id to update', id);
+		console.log('contact data to update', data);
+
+		// const index = this.state.contacts.findIndex(contact => contact.id === id);
+		// this.setState({
+		// 	contacts: update(this.state.contacts, {$splice: [[id, 1, data]]})
+		// })
+
+		this.setState({
+			contacts: this.state.contacts.map(contact => contact.id === id ? Object.assign({}, contact, data) : contact)
+		})
 	}
 
 	render()
@@ -109,7 +124,7 @@ class ContactLists extends React.Component
 					]}
 					SubComponent={row => {
 						return (
-							<UpdateContact contact={row.original} />
+							<UpdateContact contact={row.original} updateContactInformation={(id, contact) => this.updateContactInformation(id, contact)} />
 						)
 					}}
 				/>

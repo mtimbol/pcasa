@@ -45,7 +45,7 @@ class ContactsController extends Controller
     	if ($contact->update($request->all())) {
     		return response()->json([
     			'status' => 1,
-    			'message' => 'Contact has been successfully updated.'
+    			'contact' => 'Contact has been successfully updated.'
     		]);
     	}
 

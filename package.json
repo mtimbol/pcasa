@@ -21,8 +21,11 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
+    "immutability-helper": "^2.6.2",
+    "install": "^0.10.2",
     "match-sorter": "^2.2.0",
     "normalize.css": "^7.0.0",
+    "npm": "^5.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-table": "^6.7.5",
