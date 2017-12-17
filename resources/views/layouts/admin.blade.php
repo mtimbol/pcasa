@@ -165,6 +165,7 @@
     </div>
 
     <script src="/js/app.js"></script>
+    <script src="/js/vendor.js"></script>
     @yield('footer_scripts')
 </body>
 </html>

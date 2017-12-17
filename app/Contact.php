@@ -25,6 +25,11 @@ class Contact extends Model
         return $this->properties()->attach($properties);
     }
 
+    public function notInterestedIn($properties)
+    {
+        return $this->properties()->detach($properties);
+    }
+
     public static function exists($value)
     {
     	if (str_contains($value, '@')) {

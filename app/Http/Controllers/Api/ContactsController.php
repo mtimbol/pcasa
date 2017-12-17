@@ -10,6 +10,7 @@ class ContactsController extends Controller
 {
     public function index()
     {
+    	// return Contact::with('properties')->orderBy('name', 'asc')->get();
 		return Contact::with(['properties' => function($query) {
 			$query->get(['community', 'name', 'property_number']);
 		}])->orderBy('name', 'asc')->get();
