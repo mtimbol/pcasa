@@ -5,29 +5,31 @@
 @section('content')
 
 <div class="flex items-center flex-col justify-center h-full">
-    <h1 class="text-grey-darkest py-6">Pcasa</h1>
-    <div class="w-1/2 bg-white shadow p-6">
+    <div class="text-grey-darkest py-6">
+        <img src="/images/logo.png" alt="Pcasa" title="Pcasa" />
+    </div>
+    <div class="w-1/3 bg-white shadow p-6">
         <form method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
             <div class="w-full mb-6">
-                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Name</label>
+                <label class="text-grey-darker block mb-2">Name</label>
                 <input name="name" class="shadow border rounded w-full px-3 py-2" />
             </div> 
             <div class="w-full mb-6">
-                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
+                <label class="text-grey-darker block mb-2">Email</label>
                 <input type="email" name="email" class="shadow border rounded w-full px-3 py-2" />
             </div> 
             <div class="w-full mb-6">
-                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Password</label>
+                <label class="text-grey-darker block mb-2">Password</label>
                 <input type="password" name="password" class="shadow border rounded w-full px-3 py-2" />
             </div> 
             <div class="w-full mb-6">
-                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Password Confirmation</label>
+                <label class="text-grey-darker block mb-2">Password Confirmation</label>
                 <input type="password" name="password_confirmation" class="shadow border rounded w-full px-3 py-2" />
             </div>             
             <div class="w-full text-left">
-                <button class="text-white bg-blue hover:bg-blue-dark rounded px-4 py-2">Register</button>
-                <a href="{{ route('login') }}" class="text-black px-4 py-2 no-underline">Login</a>
+                <button class="text-white bg-gold hover:bg-black rounded px-4 py-2">Register</button>
+                <a href="{{ route('login') }}" class="text-grey-darker px-4 py-2 no-underline">Login</a>
             </div> 
         </form>
     </div>

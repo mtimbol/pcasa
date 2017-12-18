@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use JavaScript;
 use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,9 +15,12 @@ class ContactsController extends Controller
 		$contacts = Contact::with(['properties' => function($query) {
 			$query->get(['community', 'name', 'property_number']);
 		}])->orderBy('name', 'asc')->get();
-		// dd($contacts->toArray());
+
+	    JavaScript::put([
+	        'contacts' => $contacts,
+	    ]);		
 		
-		return view('admin.contacts.index', compact('contacts', 'alertTitle'));
+		return view('admin.contacts.index', compact('alertTitle'));
 	}
 
 	public function show($contact)

@@ -19,7 +19,7 @@
 <body class="px-8">
     <div class="flex pt-6 pb-2">
         <div class="w-1/4 px-4">
-            <h1 class="text-grey-darker">Pcasa</h1>
+            <h1 class="text-gold">Pcasa</h1>
         </div>
         <div class="w-full px-4">
             <div class="flex">
@@ -63,7 +63,7 @@
             <div class="mb-8">
                 <ul class="list-reset">
                     <li class="mb-3">
-                        <a href="{{ route('admin.index') }}" class="no-underline text-grey-darker hover:text-black">
+                        <a href="{{ route('admin.index') }}" class="no-underline text-grey-darker hover:text-gold">
                             <i class="fa fa-dashboard mr-1"></i> Dashboard
                         </a>
                     </li>
@@ -75,14 +75,41 @@
                 </p>
                 <ul class="list-reset">
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-black">
+                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-gold">
                             <i class="fa fa-user-circle-o mr-1"></i> Contacts
                         </a>
                     </li>
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-black">
+                        <a href="{{ route('admin.leads.index') }}" class="no-underline text-grey-darker hover:text-gold">
                             <i class="fa fa-user-circle mr-1"></i> Leads
                         </a>
+                        <ul class="list-reset mt-3 ml-6">
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'database') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Database
+                                </a>
+                            </li>
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'lead') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Lead
+                                </a>
+                            </li>                            
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'potential') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Potential
+                                </a>
+                            </li>
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'follow-up') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Follow up
+                                </a>
+                            </li>     
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Do not call
+                                </a>
+                            </li>                                                                                                              
+                        </ul>
                     </li> 
                 </ul>
             </div>
@@ -92,12 +119,12 @@
                 </p>
                 <ul class="list-reset">
                     <li class="mb-3">
-                        <a href="{{ route('admin.properties.index') }}" class="no-underline text-grey-darker hover:text-black">
+                        <a href="{{ route('admin.properties.index') }}" class="no-underline text-grey-darker hover:text-gold">
                             <i class="fa fa-building mr-1"></i> Listings
                         </a>
                     </li>  
                     <li class="mb-3">
-                        <a href="#" class="no-underline text-grey hover:text-black">
+                        <a href="#" class="no-underline text-grey hover:text-gold">
                             <i class="fa fa-building mr-1"></i> Developers
                         </a>
                     </li>                                                           
@@ -109,17 +136,17 @@
                 </p>
                 <ul class="list-reset">
                     <li class="mb-3">
-                        <a href="#" class="no-underline text-grey hover:text-black">
+                        <a href="#" class="no-underline text-grey hover:text-gold">
                             <i class="fa fa-globe mr-1"></i> Countries
                         </a>
                     </li>  
                     <li class="mb-3">
-                        <a href="#" class="no-underline text-grey hover:text-black">
+                        <a href="#" class="no-underline text-grey hover:text-gold">
                             <i class="fa fa-building mr-1"></i> Cities
                         </a>
                     </li> 
                     <li class="mb-3">
-                        <a href="#" class="no-underline text-grey hover:text-black">
+                        <a href="#" class="no-underline text-grey hover:text-gold">
                             <i class="fa fa-building mr-1"></i> Communities
                         </a>
                     </li>                                                                               
@@ -131,12 +158,12 @@
                 </p>
                 <ul class="list-reset">
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-black">
+                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-gold">
                             <i class="fa fa-line-chart mr-1"></i> Statistics
                         </a>
                     </li>
                     <li class="mb-3">
-                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-black">
+                        <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey hover:text-gold">
                             <i class="fa fa-file-archive-o mr-1"></i> Archive
                         </a>
                     </li>                    
@@ -164,6 +191,7 @@
         </div>
     </div>
 
+    @include('footer')
     <script src="/js/app.js"></script>
     <script src="/js/vendor.js"></script>
     @yield('footer_scripts')

@@ -8,6 +8,7 @@ class ContactProperties extends window.React.Component
 	{
 		super(props)
 		this.state = {
+			contactProperties: [],
 			allProperties: [],
 			showAllProperties: false,
 		}
@@ -15,6 +16,10 @@ class ContactProperties extends window.React.Component
 
 	componentDidMount()
 	{
+		this.setState({
+			contactProperties: this.props.properties
+		})
+
 		this.getAllProperties();
 	}
 
@@ -33,29 +38,36 @@ class ContactProperties extends window.React.Component
 		})
 	}
 
-	attachProperty(property_id) {
+	attachProperty(e, property_id) {
+		e.preventDefault();
+
 		console.log('Attach property_id', property_id);
 
-		const endpoint = '/api/contacts/' + this.props.contact_id + '/properties' 
+		const { contact } = this.props;
+		const endpoint = '/api/contacts/' + contact.id + '/properties';
+
 		window.axios.post(endpoint, {
 			property_id
 		}).then(response => {
 			console.log(response)
+			this.getContactProperties(contact.id);
 		}).catch(error => {
 			console.log(error)
 		});
 	}
 
-	detachProperty(property_id) {
-		console.log('Detach property_id', property_id);
+	detachProperty(e, property) {
+		e.preventDefault();
 
-		const endpoint = '/api/contacts/' + this.props.contact_id + '/properties' 
+		const { contact } = this.props;
+		let property_id = property.original.pivot.property_id;
+		const endpoint = '/api/contacts/' + contact.id + '/properties';
+
 		window.axios.delete(endpoint, {
-			params: {
-				property_id
-			}
+			params: { property_id }
 		}).then(response => {
 			console.log(response)
+			this.getContactProperties(contact.id);
 		}).catch(error => {
 			console.log(error)
 		});
@@ -67,10 +79,24 @@ class ContactProperties extends window.React.Component
 		})
 	}
 
+	getContactProperties(contact) {		
+		const endpoint = '/api/contacts/' + contact + '/properties';
+		window.axios.get(endpoint)
+			.then(response => {
+				this.setState({
+					contactProperties: response.data,
+					showAllProperties: false,
+				})
+			}).catch(error => {
+				console.log(error);
+			})
+	}
+
 	render()
 	{
+		const headerTitle = 'Associated Properties to ' + this.props.contact.name;
 		return(
-			<div>
+			<div className="w-full p-4">
 				{
 					this.state.showAllProperties ?
 					<ReactTable 
@@ -112,7 +138,9 @@ class ContactProperties extends window.React.Component
 										Header: '',
 										accessor: 'id',
 										Cell: ({value}) => (
-											<a href="#" onClick={() => this.attachProperty(value)} title="Attach property from this contact" className="no-underline px-2 text-green text-xs font-bold">Attach</a>
+											<form method="POST" onSubmit={(e) => this.attachProperty(e, value)}>
+												<button type="submit" title="Attach property from this contact" className="no-underline px-2 text-green text-xs font-bold">Attach</button>
+											</form>
 										)
 									}
 								]
@@ -120,11 +148,11 @@ class ContactProperties extends window.React.Component
 						]}
 					/> :					
 					<ReactTable 
-						data={this.props.properties}
+						data={this.state.contactProperties}
 						defaultPageSize={5}
 						columns={[
 							{
-								Header: 'Associated Properties to this contact',
+								Header: headerTitle,
 								columns: [
 									{
 										Header: 'Property number',
@@ -154,10 +182,9 @@ class ContactProperties extends window.React.Component
 										Header: 'ID',
 										accessor: 'id',
 										Cell: (value) => (
-											// const property_id = value.original.pivot.property_id;
-											<span>
-												<a href="#" onClick={() => this.detachProperty(value.original.pivot.property_id)} title="Remove property from this contact" className="no-underline px-2 text-red text-xs font-bold">Delete</a>
-											</span>
+											<form method="POST" onSubmit={(e) => this.detachProperty(e, value)}>
+												<button type="submit" title="Remove property from this contact" className="no-underline px-2 text-red text-xs font-bold">Delete</button>
+											</form>											
 										)
 									}
 								]
@@ -169,11 +196,11 @@ class ContactProperties extends window.React.Component
 				<div className="w-full flex justify-end my-4">
 				{
 					this.state.showAllProperties ?				
-						<a onClick={() => this.doneAttachingProperty()} className="no-underline bg-blue hover:bg-blue-dark text-white px-4 py-2 rounded cursor-pointer">
+						<a onClick={() => this.doneAttachingProperty()} className="no-underline bg-gold hover:bg-black text-white px-4 py-2 rounded cursor-pointer">
 							<i className="fa fa-check mr-2"></i>
 							Done
 						</a> :
-						<a onClick={() => this.attachingProperty()} className="no-underline bg-blue hover:bg-blue-dark text-white px-4 py-2 rounded cursor-pointer">
+						<a onClick={() => this.attachingProperty()} className="no-underline bg-gold hover:bg-black text-white px-4 py-2 rounded cursor-pointer">
 							<i className="fa fa-paperclip mr-2"></i>
 							Attach property
 						</a>

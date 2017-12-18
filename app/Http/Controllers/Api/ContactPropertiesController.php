@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ContactPropertiesController extends Controller
 {
+    public function index(Contact $contact)
+    {
+        return $contact->properties;
+    }
+
     public function store(Request $request, Contact $contact)
     {
     	if ($request->has('property_id')) {		

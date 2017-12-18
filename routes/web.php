@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function() {
-	return 'Public page';
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::get('/', 'Admin\AdminController@index')->name('index');
@@ -22,6 +20,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 	Route::get('contacts/{contact}', 'Admin\ContactsController@show')->name('contacts.show');
 	Route::post('contacts', 'Admin\ContactsController@store');
 	Route::put('contacts/{contact}', 'Admin\ContactsController@update');
+	
+	Route::get('leads/{lead?}', 'Admin\LeadsController@index')->name('leads.index');
+
 	Route::get('contacts/import', 'Admin\ImportContactsController@index')->name('contacts.import.index');
 	Route::post('contacts/import', 'Admin\ImportContactsController@store');
 	Route::put('contacts/import/update-skipped', 'Admin\UpdateSkippedContactsController@update');

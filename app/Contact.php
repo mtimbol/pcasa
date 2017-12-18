@@ -20,14 +20,16 @@ class Contact extends Model
         return $this->belongsToMany(Property::class, 'property_contacts');
     }
 
-    public function interestedIn($properties)
+    public function interestedIn($property)
     {
-        return $this->properties()->attach($properties);
+        if (! $this->properties()->where('property_id', $property)->exists()) {
+            return $this->properties()->attach($property);
+        }
     }
 
-    public function notInterestedIn($properties)
+    public function notInterestedIn($property)
     {
-        return $this->properties()->detach($properties);
+        return $this->properties()->detach($property);
     }
 
     public static function exists($value)

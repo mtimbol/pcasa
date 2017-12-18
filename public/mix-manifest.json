@@ -1,10 +1,10 @@
 {
     "/js/ImportContacts.js": "/js/ImportContacts.js",
+    "/js/contact-lists.js": "/js/contact-lists.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/public.css": "/css/public.css",
     "/css/vendor.css": "/css/vendor.css",
-    "/js/contact-lists.js": "/js/contact-lists.js",
     "/js/vendor.js": "/js/vendor.js",
     "/js/alert.js": "/js/alert.js"
 }

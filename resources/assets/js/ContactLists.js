@@ -3,6 +3,7 @@ import 'react-table/react-table.css';
 
 import matchSorter from 'match-sorter';
 import UpdateContact from './Contact/Update';
+import ContactProperties from './Contact/Properties';
 
 class ContactLists extends window.React.Component
 {
@@ -17,10 +18,12 @@ class ContactLists extends window.React.Component
 
 	componentDidMount()
 	{
-		this.getContacts();
+		this.setState({
+			contacts: window.contacts
+		})
 	}
 
-	getContacts() {
+	getAllContacts() {
 		window.axios.get('/api/contacts')
 			.then(response => {
 				this.setState({ contacts: response.data })
@@ -46,21 +49,21 @@ class ContactLists extends window.React.Component
 								{
 									Header: 'Community',
 									id: 'community',
-									accessor: contact => contact.properties[0].community,
+									accessor: contact => Object.keys(contact.properties).length > 0 ? contact.properties[0].community : '',
 									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['community'] }),
 									filterAll: true,
 								},
 								{
 									Header: 'Subcommunity',
 									id: 'subcommunity',
-									accessor: contact => contact.properties[0].name,
+									accessor: contact => Object.keys(contact.properties).length > 0 ? contact.properties[0].name : '',
 									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['subcommunity'] }),
 									filterAll: true,
 								},
 								{
 									Header: 'Property Number',
 									id: 'property_number',
-									accessor: contact => contact.properties[0].property_number,
+									accessor: contact => Object.keys(contact.properties).length > 0 ? contact.properties[0].property_number : '',
 									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['property_number'] }),
 									filterAll: true
 								}
@@ -103,7 +106,10 @@ class ContactLists extends window.React.Component
 					SubComponent={row => {
 						console.log('SubComponent', row);
 						return (
-							<UpdateContact contact={row.original} updateContacts={() => this.getContacts()} />
+							<div>
+								<UpdateContact contact={row.original} refreshContacts={() => this.getAllContacts()} />								
+								<ContactProperties contact={row.original} properties={row.original.properties} />
+							</div>
 						)
 					}}
 				/>

@@ -4,32 +4,34 @@
 @section('content')
 
 <div class="flex items-center flex-col justify-center h-full">
-    <h1 class="text-grey-darkest py-6">Pcasa</h1>
-    <div class="w-1/2 bg-white shadow p-6">
+    <div class="text-grey-darkest py-6">
+        <img src="/images/logo.png" alt="Pcasa" title="Pcasa" />
+    </div>
+    <div class="w-1/3 bg-white shadow p-6">
         <form method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="w-full mb-6">
-                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
+                <label class="text-grey-darker block mb-2">Email</label>
                 <input type="email" name="email" class="shadow border rounded w-full px-3 py-2" />
             </div> 
             <div class="w-full mb-6">
-                <label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Password</label>
+                <label class="text-grey-darker block mb-2">Password</label>
                 <div class="relative">
                     <input type="password" name="password" class="shadow border rounded w-full px-3 py-2" />
                     <span class="absolute pin-t pin-r mt-2 mr-2">
-                        <a href="{{ route('password.request') }}" class="text-grey-dark no-underline text-xs">Forgot password?</a>
+                        <a href="{{ route('password.request') }}" class="text-grey-darker no-underline text-xs">Forgot password?</a>
                     </span>
                 </div>
             </div> 
             <div class="w-full mb-6">
                 <label>
-                    <input type="checkbox" name="remember" class="" />
-                    <span class="text-grey-dark">Remember me</span>
+                    <input type="checkbox" name="remember" class="mr-1" />
+                    <span class="text-grey-darker">Remember me</span>
                 </label>
             </div>            
             <div class="w-full text-left">
-                <button class="text-white bg-blue hover:bg-blue-dark rounded px-4 py-2">Login</button>
-                <a href="{{ route('register') }}" class="text-black px-4 py-2 no-underline">Register</button>
+                <button class="text-white bg-gold hover:bg-black rounded px-4 py-2">Login</button>
+                <a href="{{ route('register') }}" class="text-grey-darker px-4 py-2 no-underline">Register</button>
             </div> 
         </form>
     </div>
