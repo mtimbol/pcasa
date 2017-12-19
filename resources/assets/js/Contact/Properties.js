@@ -179,7 +179,7 @@ class ContactProperties extends window.React.Component
 										accessor: 'unit_type',							
 									},
 									{
-										Header: 'ID',
+										Header: '',
 										accessor: 'id',
 										Cell: (value) => (
 											<form method="POST" onSubmit={(e) => this.detachProperty(e, value)}>

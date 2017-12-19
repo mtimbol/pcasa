@@ -26,13 +26,11 @@ table {
 	border-collapse: collapse;
 }
 
-ul.table-actions {
-	display: none;
+.ReactTable .rt-thead.-headerGroups {
+    color: #fff;
+    background-color: #524d49 !important;
 }
 
-table th.text-xs { font-size: 10px; }
-table tbody tr:hover {
-	ul.table-actions {
-		display: block;
-	}
+.floating-field-menu {
+	margin-top: -30px;
 }

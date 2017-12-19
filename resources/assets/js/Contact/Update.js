@@ -9,12 +9,26 @@ class UpdateContact extends window.React.Component
 			salutation: '',
 			name: '',
 			email: '',
+			email2: '',
 			phone: '',
-			mobile: '',
+			fax: '',
+			mobile: '',		
+			mobile2: '',		
+			mobile3: '',		
 			company: '',
 			position: '',
+			nationality: '',
 			contact_status: '',
 			client_type: '',
+
+			showEmail: true,
+			showEmail2: false,
+			showFloatingEmailSelection: false,
+
+			showMobile: true,
+			showMobile2: false,
+			showMobile3: false,	
+			showFloatingMobileSelection: false,
 
 			updating: false,
 			button_text: 'Update contact',
@@ -29,10 +43,15 @@ class UpdateContact extends window.React.Component
 			salutation: contact.salutation, 
 			name: contact.name,
 			email: contact.email,
-			phone: contact.phone,
+			email2: contact.email2,
 			mobile: contact.mobile,
+			mobile2: contact.mobile2,
+			mobile3: contact.mobile3,
+			phone: contact.phone,
+			fax: contact.fax,
 			company: contact.company,
 			position: contact.position,
+			nationality: contact.nationality,
 			contact_status: contact.contact_status,
 			client_type: contact.client_type,	
 		})
@@ -52,10 +71,15 @@ class UpdateContact extends window.React.Component
 			salutation: state.salutation, 
 			name: state.name,
 			email: state.email,
-			phone: state.phone,
+			email2: state.email2,
 			mobile: state.mobile,
+			mobile2: state.mobile2,
+			mobile3: state.mobile3,
+			phone: state.phone,
+			fax: state.fax,
 			company: state.company,
 			position: state.position,
+			nationality: state.nationality,
 			contact_status: state.contact_status,
 			client_type: state.client_type
 		}).then(response => {
@@ -88,7 +112,7 @@ class UpdateContact extends window.React.Component
 			<form method="POST" onSubmit={this.updateProfile.bind(this)}>
 				<div className="flex p-4">
 					<div className="w-1/2 mr-8">
-						<h4 className="text-grey-darker mb-2">Contact Information</h4>
+						<h4 className="text-grey-darker mb-2">Personal Information</h4>
 						<p className="text-grey-darker text-xs font-normal leading-normal mb-2">
 							TODO: If the email or phone is existing on the database, the fields will be automatically filled.
 						</p>
@@ -141,16 +165,6 @@ class UpdateContact extends window.React.Component
 								</div>
 							</div>								
 						</div>
-						<div className="flex mb-6">			
-							<div className="w-1/2 mr-2">
-								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
-								<input value={state.email} onChange={(e) => this.setState({ email: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
-							</div>
-							<div className="w-1/2 ml-2">
-								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Phone</label>
-								<input value={state.phone} onChange={(e) => this.setState({ phone: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
-							</div>						
-						</div>
 						<div className="mb-2">
 							<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Full Name</label>
 						</div>
@@ -176,7 +190,69 @@ class UpdateContact extends window.React.Component
 							<div className="w-full ml-2">
 								<input value={state.name} onChange={(e) => this.setState({ name: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
 							</div>
-						</div>					
+						</div>						
+						<div className="flex mb-6">			
+							<div className="w-1/2 mr-2">
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Email</label>
+								<div className="relative">
+									{ this.state.showEmail ? <input value={state.email} onChange={(e) => this.setState({ email: e.target.value })} placeholder="Primary email" className="shadow border rounded w-full px-3 py-2" /> : '' }
+									{ this.state.showEmail2 ? <input value={state.email2} onChange={(e) => this.setState({ email2: e.target.value })} placeholder="Secondary email" className="shadow border rounded w-full px-3 py-2" /> : '' }
+								
+									<a onClick={() => this.setState({ showFloatingEmailSelection: !this.state.showFloatingEmailSelection })} className="no-underline cursor-pointer absolute pin-t pin-r mr-3 mt-3">
+										<i className="fa fa-ellipsis-h text-grey-dark"></i>
+									</a>
+
+									{
+										this.state.showFloatingEmailSelection ?									
+										<div className="absolute bg-white border shadow p-2 w-32 pin-t pin-r mr-8 floating-field-menu">
+											<ul className="list-reset">
+												<li className="p-1 border-b border-dashed"><a className="no-underline cursor-pointer block text-grey-darker" onClick={() => this.setState({ showEmail: true, showEmail2: false, showFloatingEmailSelection: false })}>Primary Email</a></li>
+												<li className="p-1"><a className="no-underline cursor-pointer block text-grey-darker" onClick={() => this.setState({ showEmail2: true, showEmail: false, showFloatingEmailSelection: false })}>Secondary Email</a></li>
+											</ul>
+										</div> : <span></span>
+									}									
+								</div>
+							</div>
+							<div className="w-1/2 ml-2">
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Mobile</label>
+								<div className="relative">
+									{ this.state.showMobile ? <input value={state.mobile} onChange={(e) => this.setState({ mobile: e.target.value })} placeholder="Primary mobile" className="shadow border rounded w-full px-3 py-2" /> : '' }
+									{ this.state.showMobile2 ? <input value={state.mobile2} onChange={(e) => this.setState({ mobile2: e.target.value })} placeholder="Mobile 2" className="shadow border rounded w-full px-3 py-2" /> : '' }
+									{ this.state.showMobile3 ? <input value={state.mobile3} onChange={(e) => this.setState({ mobile3: e.target.value })} placeholder="Mobile 3" className="shadow border rounded w-full px-3 py-2" /> : '' }
+									
+									<a onClick={() => this.setState({ showFloatingMobileSelection: !this.state.showFloatingMobileSelection })} className="no-underline cursor-pointer absolute pin-t pin-r mr-3 mt-3">
+										<i className="fa fa-ellipsis-h text-grey-dark"></i>
+									</a>
+
+									{
+										this.state.showFloatingMobileSelection ?									
+										<div className="absolute bg-white border shadow p-2 w-32 pin-t pin-r mr-8 floating-field-menu">
+											<ul className="list-reset">
+												<li className="p-1 border-b border-dashed"><a className="no-underline cursor-pointer block text-grey-darker" onClick={() => this.setState({ showMobile: true, showMobile2: false, showMobile3: false, showFloatingMobileSelection: false })}>Primary Mobile</a></li>
+												<li className="p-1 border-b border-dashed"><a className="no-underline cursor-pointer block text-grey-darker" onClick={() => this.setState({ showMobile2: true, showMobile3: false, showMobile: false, showFloatingMobileSelection: false })}>Mobile 2</a></li>
+												<li className="p-1"><a className="no-underline cursor-pointer block text-grey-darker" onClick={() => this.setState({ showMobile3: true, showMobile: false, showMobile2: false, showFloatingMobileSelection: false })}>Mobile 3</a></li>
+											</ul>
+										</div> : <span></span>
+									}
+								</div>
+							</div>						
+						</div>
+						<div className="flex mb-6">			
+							<div className="w-1/2 mr-2">
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Phone</label>
+								<input value={state.phone} onChange={(e) => this.setState({ phone: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
+							</div>
+							<div className="w-1/2 ml-2">
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Fax</label>
+								<input value={state.fax} onChange={(e) => this.setState({ fax: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
+							</div>						
+						</div>
+						<div className="flex mb-6">			
+							<div className="w-full">
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Nationality</label>
+								<input value={state.nationality} onChange={(e) => this.setState({ nationality: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
+							</div>
+						</div>																	
 					</div>
 				</div>
 
