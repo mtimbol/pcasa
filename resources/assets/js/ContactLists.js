@@ -4,6 +4,7 @@ import 'react-table/react-table.css';
 import matchSorter from 'match-sorter';
 import UpdateContact from './Contact/Update';
 import ContactProperties from './Contact/Properties';
+import UpdateContactCategory from './Contact/UpdateContactCategory';
 
 class ContactLists extends window.React.Component
 {
@@ -49,7 +50,10 @@ class ContactLists extends window.React.Component
 								{
 									Header: 'Community',
 									id: 'community',
-									accessor: contact => Object.keys(contact.properties).length > 0 ? contact.properties[0].community : '',
+									// accessor: contact => Object.keys(contact.properties).length > 0 ? contact.properties[0].community : '',
+									Cell: (contact) => (
+										<UpdateContactCategory contact={contact.original} />
+									),								
 									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['community'] }),
 									filterAll: true,
 								},
