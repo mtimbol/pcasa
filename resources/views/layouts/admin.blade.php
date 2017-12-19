@@ -78,25 +78,20 @@
                         <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-gold">
                             <i class="fa fa-user-circle-o mr-1"></i> Contacts
                         </a>
-                    </li>
-                    <li class="mb-3">
-                        <a href="{{ route('admin.leads.index') }}" class="no-underline text-grey-darker hover:text-gold">
-                            <i class="fa fa-user-circle mr-1"></i> Leads
-                        </a>
                         <ul class="list-reset mt-3 ml-6">
                             <li class="mb-1">
                                 <a href="{{ route('admin.leads.index', 'database') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Database
+                                    Buyer Leads
                                 </a>
                             </li>
                             <li class="mb-1">
                                 <a href="{{ route('admin.leads.index', 'lead') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Lead
+                                    Landlord Leads
                                 </a>
                             </li>                            
                             <li class="mb-1">
                                 <a href="{{ route('admin.leads.index', 'potential') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Potential
+                                    Tenant Leads
                                 </a>
                             </li>
                             <li class="mb-1">
@@ -106,11 +101,16 @@
                             </li>     
                             <li class="mb-1">
                                 <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Do not call
+                                    DND
                                 </a>
-                            </li>                                                                                                              
-                        </ul>
-                    </li> 
+                            </li>
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Wrong contacts
+                                </a>
+                            </li>                                                            
+                        </ul>                        
+                    </li>
                 </ul>
             </div>
             <div class="mb-8">

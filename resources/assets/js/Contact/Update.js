@@ -19,7 +19,7 @@ class UpdateContact extends window.React.Component
 			position: '',
 			nationality: '',
 			contact_status: '',
-			client_type: '',
+			contact_source: '',
 
 			showEmail: true,
 			showEmail2: false,
@@ -53,7 +53,7 @@ class UpdateContact extends window.React.Component
 			position: contact.position,
 			nationality: contact.nationality,
 			contact_status: contact.contact_status,
-			client_type: contact.client_type,	
+			contact_source: contact.source,	
 		})
 	}
 
@@ -81,7 +81,7 @@ class UpdateContact extends window.React.Component
 			position: state.position,
 			nationality: state.nationality,
 			contact_status: state.contact_status,
-			client_type: state.client_type
+			source: state.contact_source
 		}).then(response => {
 			if (response.data.status === 1 ) {
 				this.setState({
@@ -113,17 +113,11 @@ class UpdateContact extends window.React.Component
 				<div className="flex p-4">
 					<div className="w-1/2 mr-8">
 						<h4 className="text-grey-darker mb-2">Personal Information</h4>
-						<p className="text-grey-darker text-xs font-normal leading-normal mb-2">
-							TODO: If the email or phone is existing on the database, the fields will be automatically filled.
-						</p>
-						<p className="text-grey-darker text-xs font-normal leading-normal">
-							Fields with (*) needs to be filled up.
-						</p>					
 					</div>
 					<div className="w-full">
 						<div className="flex mb-6">
 							<div className="w-1/2 mr-2">
-								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Contact Status</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Contact Category/Type</label>
 								<div className="inline-block relative w-full">
 									<select 
 										className="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow"
@@ -145,17 +139,19 @@ class UpdateContact extends window.React.Component
 								</div>							
 							</div>	
 							<div className="w-1/2 ml-2">
-								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Client Type</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Contact Source</label>
 								<div className="inline-block relative w-full">
 									<select className="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow"
-										value={state.client_type}
-										onChange={(e) => this.setState({ client_type: e.target.value })}
+										value={state.contact_source}
+										onChange={(e) => this.setState({ contact_source: e.target.value })}
 									>
 										<option value=""></option>
-										<option value="buyer">Buyer</option>
-										<option value="landlord">Landlord</option>
-										<option value="agent">Agent</option>
-										<option value="developer">Developer</option>
+										<option value="database">Database</option>
+										<option value="dubizzle">Dubizzle</option>
+										<option value="property-finder">Property Finder</option>
+										<option value="direct-call">Direct call</option>
+										<option value="referral">Referral</option>
+										<option value="others">Others</option>
 									</select>
 									<div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-slate">
 										<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -259,12 +255,6 @@ class UpdateContact extends window.React.Component
 				<div className="flex p-4">
 					<div className="w-1/2 mr-8">
 						<h4 className="text-grey-darker mb-2">Company Information</h4>
-						<p className="text-grey-darker text-xs font-normal leading-normal mb-2">
-							Lorem ipsum dolor sit amet, consectetur adipisicing.
-						</p>
-						<p className="text-grey-darker text-xs font-normal leading-normal">
-							Fields with (*) needs to be filled up.
-						</p>					
 					</div>
 					<div className="w-full">
 						<div className="flex mb-6">
