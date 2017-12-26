@@ -80,17 +80,17 @@
                         </a>
                         <ul class="list-reset mt-3 ml-6">
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'database') }}" class="no-underline text-grey-darker hover:text-gold">
+                                <a href="{{ route('admin.leads.index', 'buyer-leads') }}" class="no-underline text-grey-darker hover:text-gold">
                                     Buyer Leads
                                 </a>
                             </li>
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'lead') }}" class="no-underline text-grey-darker hover:text-gold">
+                                <a href="{{ route('admin.leads.index', 'landlord-leads') }}" class="no-underline text-grey-darker hover:text-gold">
                                     Landlord Leads
                                 </a>
                             </li>                            
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'potential') }}" class="no-underline text-grey-darker hover:text-gold">
+                                <a href="{{ route('admin.leads.index', 'tenant-leads') }}" class="no-underline text-grey-darker hover:text-gold">
                                     Tenant Leads
                                 </a>
                             </li>
@@ -100,12 +100,12 @@
                                 </a>
                             </li>     
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
+                                <a href="{{ route('admin.leads.index', 'dnd') }}" class="no-underline text-grey-darker hover:text-gold">
                                     DND
                                 </a>
                             </li>
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
+                                <a href="{{ route('admin.leads.index', 'wrong-contacts') }}" class="no-underline text-grey-darker hover:text-gold">
                                     Wrong contacts
                                 </a>
                             </li>                                                            

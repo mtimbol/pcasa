@@ -122,12 +122,12 @@ class UpdateContact extends window.React.Component
 										value={state.contact_status}
 										onChange={(e) => this.setState({ contact_status: e.target.value })}
 									>
-										<option value=""></option>
-										<option value="database">Database</option>
-										<option value="lead">Lead</option>
-										<option value="potential">Potential</option>
+										<option value="Please select">-</option>
+										<option value="buyer-leads">Buyer Leads</option>
+										<option value="landlord-leads">Landlord Leads</option>
+										<option value="tenant-leads">Tenant Leads</option>
 										<option value="follow-up">Follow up</option>
-										<option value="do-not-call">Do not call</option>
+										<option value="wrong-contact">Wrong Contact</option>
 									</select>
 									<div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-slate">
 										<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
