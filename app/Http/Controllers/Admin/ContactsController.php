@@ -35,7 +35,11 @@ class ContactsController extends Controller
 
 	public function store(Request $request)
 	{
-		// TODO: Validate request
+		$this->validate($request, [
+			'name' => 'required',
+			'phone' => 'required'
+		]);
+		
 		$contact = Contact::create($request->all());
 
 		if ($request->has('properties')) {

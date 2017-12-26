@@ -12,4 +12,24 @@ class PropertiesController extends Controller
     {
     	return Property::orderBy('property_number', 'asc')->get();
     }
+
+    public function show($property)
+    {
+    	return $property;
+    }
+
+    public function update($property, Request $request)
+    {
+        if ($property->update($request->all())) {
+        	return response()->json([
+        		'status' => 1,
+        		'property' => $property
+        	]);
+        }
+
+    	return response()->json([
+    		'status' => 0,
+    		'property' => [] 
+    	]);
+    }
 }

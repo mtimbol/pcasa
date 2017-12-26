@@ -22,9 +22,7 @@ class Contact extends Model
 
     public function interestedIn($property)
     {
-        if (! $this->properties()->where('property_id', $property)->exists()) {
-            return $this->properties()->attach($property);
-        }
+        return $this->properties()->attach($property);
     }
 
     public function notInterestedIn($property)

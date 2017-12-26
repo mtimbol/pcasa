@@ -23,9 +23,9 @@ class ManageContactsTest extends TestCase
             // Personal Information
             'salutation' => 'MR.',
             'name' => 'Mark Timbol',
-            'first_name' => 'Mark',
-            'middle_name' => 'Turla',
-            'last_name' => 'Timbol',
+            // 'first_name' => 'Mark',
+            // 'middle_name' => 'Turla',
+            // 'last_name' => 'Timbol',
             'nationality' => 'Filipino',
 
             // Company Information
@@ -49,16 +49,16 @@ class ManageContactsTest extends TestCase
             'source' => 'propertyfinder',
             'properties' => [$property->id, $property2->id]
         ]);
-
+        
         $this->assertDatabaseHas('contacts', [
             'contact_status' => 'lead',
             'client_type' => 'landlord',
             // Personal Information
             'salutation' => 'MR.',
             'name' => 'Mark Timbol',
-            'first_name' => 'Mark',
-            'middle_name' => 'Turla',
-            'last_name' => 'Timbol',
+            // 'first_name' => 'Mark',
+            // 'middle_name' => 'Turla',
+            // 'last_name' => 'Timbol',
             'nationality' => 'Filipino',
 
             // Company Information

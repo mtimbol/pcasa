@@ -1,10 +1,12 @@
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import update from 'immutability-helper';
 
 import matchSorter from 'match-sorter';
 import UpdateContact from './Contact/Update';
 import ContactProperties from './Contact/Properties';
 import UpdateContactCategory from './Contact/UpdateContactCategory';
+import UpdateContactStatus from './Contact/UpdateContactStatus';
 
 class ContactLists extends window.React.Component
 {
@@ -13,7 +15,8 @@ class ContactLists extends window.React.Component
 		super(props);
 
 		this.state = {
-			contacts: []
+			contacts: [],
+			updating_status: false,
 		}
 	}
 
@@ -32,6 +35,28 @@ class ContactLists extends window.React.Component
 			.catch(error => {
 				console.log(error);
 			})
+	}
+
+	_updateContactStatus(id, status) {
+		console.log('_updateContactStatus(id, status)', id, status);
+
+		return window.axios.put('/api/contacts/' + id, {
+			'contact_status': status
+		}).then(response => {
+			console.log('_updateContactStatus() response', response);
+			if (response.data.status == 1) {
+				let selected_contact = this.state.contacts.filter(contact => contact.id === id);
+				let updated_contact = Object.assign({}, selected_contact);
+				updated_contact[0]['contact_status'] = status;
+
+				Object.assign({}, this.state.contacts, {
+					...this.state.contacts,
+					updated_contact
+				})				
+			}
+		}).catch(error => {
+			console.log('_updateContactStatus() error', error);
+		})
 	}
 
 	render()
@@ -58,7 +83,7 @@ class ContactLists extends window.React.Component
 									filterAll: true,
 								},
 								{
-									Header: 'Subcommunity',
+									Header: 'Sub Community / Tower',
 									id: 'subcommunity',
 									accessor: contact => Object.keys(contact.properties).length > 0 ? contact.properties[0].name : '',
 									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['subcommunity'] }),
@@ -80,7 +105,12 @@ class ContactLists extends window.React.Component
 									Header: 'Name',
 									accessor: 'name',
 									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
-									filterAll: true
+									filterAll: true,
+									Cell: contact => {
+										return (
+											<UpdateContactStatus contact={contact.original} updateContactStatus={(id, status) => this._updateContactStatus(id, status)} updating_status={this.state.updating_status}/>
+										)
+									}
 								},
 								{
 									Header: 'Mobile',

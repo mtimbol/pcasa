@@ -111,10 +111,8 @@ class UpdateContact extends window.React.Component
 		return (
 			<form method="POST" onSubmit={this.updateProfile.bind(this)}>
 				<div className="flex p-4">
-					<div className="w-1/2 mr-8">
-						<h4 className="text-grey-darker mb-2">Personal Information</h4>
-					</div>
 					<div className="w-full">
+						<h4 className="text-grey-dark font-normal mb-4 uppercase">Personal Information</h4>
 						<div className="flex mb-6">
 							<div className="w-1/2 mr-2">
 								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Contact Category/Type</label>
@@ -253,13 +251,11 @@ class UpdateContact extends window.React.Component
 				</div>
 
 				<div className="flex p-4">
-					<div className="w-1/2 mr-8">
-						<h4 className="text-grey-darker mb-2">Company Information</h4>
-					</div>
 					<div className="w-full">
+						<h4 className="text-grey-dark font-normal mb-4 uppercase">Additional Information</h4>
 						<div className="flex mb-6">
 							<div className="w-1/2 mr-2">
-								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Company</label>
+								<label className="text-grey-darker text-xs font-semibold uppercase tracking-wide block mb-2">Company Name</label>
 								<input value={state.company} onChange={(e) => this.setState({ company: e.target.value })} className="shadow border rounded w-full px-3 py-2" />
 							</div>
 							<div className="w-1/2 ml-2">

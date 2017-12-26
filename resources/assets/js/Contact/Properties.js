@@ -1,6 +1,7 @@
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import matchSorter from 'match-sorter';
+import UpdateProperty from './UpdateProperty';
 
 class ContactProperties extends window.React.Component
 {
@@ -115,7 +116,7 @@ class ContactProperties extends window.React.Component
 										filterAll: true,
 									},
 									{
-										Header: 'Name',
+										Header: 'Sub Community / Tower',
 										accessor: 'name'
 									},
 									{
@@ -159,7 +160,7 @@ class ContactProperties extends window.React.Component
 										accessor: 'property_number',
 									},
 									{
-										Header: 'Name',
+										Header: 'Sub Community / Tower',
 										accessor: 'name'
 									},
 									{
@@ -183,13 +184,20 @@ class ContactProperties extends window.React.Component
 										accessor: 'id',
 										Cell: (value) => (
 											<form method="POST" onSubmit={(e) => this.detachProperty(e, value)}>
-												<button type="submit" title="Remove property from this contact" className="no-underline px-2 text-red text-xs font-bold">Delete</button>
+												<button type="submit" title="Remove property from this contact" className="no-underline px-2 text-red text-xs font-bold">Unattach</button>
 											</form>											
 										)
 									}
 								]
 							}
 						]}
+						SubComponent={row => {
+							return (
+								<div>
+									<UpdateProperty property_id={row.original.pivot.property_id} />
+								</div>
+							)
+						}}
 					/>
 				}
 

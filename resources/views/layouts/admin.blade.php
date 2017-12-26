@@ -19,7 +19,7 @@
 <body class="px-8">
     <div class="flex pt-6 pb-2">
         <div class="w-1/4 px-4">
-            <h1 class="text-gold">Pcasa</h1>
+            <h1 class="text-gold">Simsar Genie</h1>
         </div>
         <div class="w-full px-4">
             <div class="flex">

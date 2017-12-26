@@ -29,26 +29,34 @@ class ManagePropertiesTest extends TestCase
     {
     	$response = $this->json('POST', '/admin/properties', [
     		'name' => 'The property name',
-    		'property_number' => '12345',
+            'property_number' => '12345',
+    		'reference_number' => 'SAMT-001',
     		'developer' => 'NAKHEEL',
     		'community' => 'Al Furjan',
     		'property_type' => 'VILLA',
-    		'bedrooms' => 3,
-    		'unit_type' => 'unit type',
-    		'size' => 2500,
-    		'view' => 'The view'
-    	]);
-
-    	$this->assertDatabaseHas('properties', [
-    		'name' => 'The property name',
-    		'property_number' => '12345',
-    		'developer' => 'NAKHEEL',
-    		'community' => 'Al Furjan',
-    		'property_type' => 'VILLA',
+            'price' => 3000000,
+            'floor' => '708',
     		'bedrooms' => 3,
     		'unit_type' => 'unit type',
     		'size' => 2500,
     		'view' => 'The view',
+            'is_rented' => true,
+    	]);
+
+    	$this->assertDatabaseHas('properties', [
+    		'name' => 'The property name',
+            'property_number' => '12345',
+    		'reference_number' => 'SAMT-001',
+    		'developer' => 'NAKHEEL',
+    		'community' => 'Al Furjan',
+    		'property_type' => 'VILLA',
+            'price' => 3000000,
+            'floor' => '708',
+    		'bedrooms' => 3,
+    		'unit_type' => 'unit type',
+    		'size' => 2500,
+    		'view' => 'The view',
+            'is_rented' => '1',
     	]);
     }
 
