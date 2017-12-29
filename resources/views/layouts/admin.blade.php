@@ -19,7 +19,7 @@
 <body class="px-8">
     <div class="flex pt-6 pb-2">
         <div class="w-1/4 px-4">
-            <h1 class="text-gold">Simsar Genie</h1>
+            <h1 class="text-gold">Mark</h1>
         </div>
         <div class="w-full px-4">
             <div class="flex">
@@ -78,7 +78,7 @@
                         <a href="{{ route('admin.contacts.index') }}" class="no-underline text-grey-darker hover:text-gold">
                             <i class="fa fa-user-circle-o mr-1"></i> Contacts
                         </a>
-                        <ul class="list-reset mt-3 ml-6">
+                        <ul class="list-reset mt-3">
                             <li class="mb-1">
                                 <a href="{{ route('admin.leads.index', 'buyer-leads') }}" class="no-underline text-grey-darker hover:text-gold">
                                     Buyer Leads

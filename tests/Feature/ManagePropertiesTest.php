@@ -72,14 +72,17 @@ class ManagePropertiesTest extends TestCase
 
     	$this->assertDatabaseHas('properties', [
     		'name' => $property->name,
+            'reference_number' => $property->reference_number,
     		'property_number' => $property->property_number,
     		'developer' => $property->developer,
     		'community' => $property->community,
-    		'property_type' => $property->property_type,
+            'property_type' => $property->property_type,
+    		'price' => $property->price,
     		'bedrooms' => 3,
     		'unit_type' => $property->unit_type,
     		'size' => $property->size,
-    		'view' => $property->view
+            'view' => $property->view,
+    		'is_rented' => $property->is_rented
     	]);
     }    
 }

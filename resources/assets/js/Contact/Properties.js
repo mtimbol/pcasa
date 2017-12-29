@@ -21,10 +21,10 @@ class ContactProperties extends window.React.Component
 			contactProperties: this.props.properties
 		})
 
-		this.getAllProperties();
+		this._getAllProperties();
 	}
 
-	getAllProperties() {
+	_getAllProperties() {
 		window.axios.get('/api/properties')
 			.then(response => {
 				this.setState({ allProperties: response.data })
@@ -33,13 +33,13 @@ class ContactProperties extends window.React.Component
 			})
 	}
 
-	attachingProperty() {
+	_attachingProperty() {
 		this.setState({
 			showAllProperties: true,
 		})
 	}
 
-	attachProperty(e, property_id) {
+	_attachProperty(e, property_id) {
 		e.preventDefault();
 
 		console.log('Attach property_id', property_id);
@@ -51,13 +51,13 @@ class ContactProperties extends window.React.Component
 			property_id
 		}).then(response => {
 			console.log(response)
-			this.getContactProperties(contact.id);
+			this._getContactProperties(contact.id);
 		}).catch(error => {
 			console.log(error)
 		});
 	}
 
-	detachProperty(e, property) {
+	_detachProperty(e, property) {
 		e.preventDefault();
 
 		const { contact } = this.props;
@@ -68,19 +68,19 @@ class ContactProperties extends window.React.Component
 			params: { property_id }
 		}).then(response => {
 			console.log(response)
-			this.getContactProperties(contact.id);
+			this._getContactProperties(contact.id);
 		}).catch(error => {
 			console.log(error)
 		});
 	}	
 
-	doneAttachingProperty() {
+	_doneAttachingProperty() {
 		this.setState({
 			showAllProperties: false,
 		})
 	}
 
-	getContactProperties(contact) {		
+	_getContactProperties(contact) {		
 		const endpoint = '/api/contacts/' + contact + '/properties';
 		window.axios.get(endpoint)
 			.then(response => {
@@ -109,7 +109,7 @@ class ContactProperties extends window.React.Component
 								Header: 'Select properties to attach on the contact',
 								columns: [
 									{
-										Header: 'Property number',
+										Header: 'Property Number',
 										accessor: 'property_number',
 										id: 'property_number',
 										filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['property_number'] }),
@@ -124,7 +124,7 @@ class ContactProperties extends window.React.Component
 										accessor: 'community'
 									},
 									{
-										Header: 'Property type',
+										Header: 'Property Type',
 										accessor: 'property_type'
 									},
 									{
@@ -132,14 +132,14 @@ class ContactProperties extends window.React.Component
 										accessor: 'bedrooms'
 									},
 									{
-										Header: 'Unit type',
+										Header: 'Unit Type',
 										accessor: 'unit_type',							
 									},
 									{
 										Header: '',
 										accessor: 'id',
 										Cell: ({value}) => (
-											<form method="POST" onSubmit={(e) => this.attachProperty(e, value)}>
+											<form method="POST" onSubmit={(e) => this._attachProperty(e, value)}>
 												<button type="submit" title="Attach property from this contact" className="no-underline px-2 text-green text-xs font-bold">Attach</button>
 											</form>
 										)
@@ -156,7 +156,7 @@ class ContactProperties extends window.React.Component
 								Header: headerTitle,
 								columns: [
 									{
-										Header: 'Property number',
+										Header: 'Property Number',
 										accessor: 'property_number',
 									},
 									{
@@ -168,7 +168,7 @@ class ContactProperties extends window.React.Component
 										accessor: 'community'
 									},
 									{
-										Header: 'Property type',
+										Header: 'Property Type',
 										accessor: 'property_type'
 									},
 									{
@@ -176,14 +176,14 @@ class ContactProperties extends window.React.Component
 										accessor: 'bedrooms'
 									},
 									{
-										Header: 'Unit type',
+										Header: 'Unit Type',
 										accessor: 'unit_type',							
 									},
 									{
 										Header: '',
 										accessor: 'id',
 										Cell: (value) => (
-											<form method="POST" onSubmit={(e) => this.detachProperty(e, value)}>
+											<form method="POST" onSubmit={(e) => this._detachProperty(e, value)}>
 												<button type="submit" title="Remove property from this contact" className="no-underline px-2 text-red text-xs font-bold">Unattach</button>
 											</form>											
 										)
@@ -194,7 +194,7 @@ class ContactProperties extends window.React.Component
 						SubComponent={row => {
 							return (
 								<div>
-									<UpdateProperty property_id={row.original.pivot.property_id} />
+									<UpdateProperty property_id={row.original.pivot.property_id} contact_id={row.original.pivot.contact_id} refreshContactProperties={(contact) => this._getContactProperties(contact)} />
 								</div>
 							)
 						}}
@@ -204,11 +204,11 @@ class ContactProperties extends window.React.Component
 				<div className="w-full flex justify-end my-4">
 				{
 					this.state.showAllProperties ?				
-						<a onClick={() => this.doneAttachingProperty()} className="no-underline bg-gold hover:bg-black text-white px-4 py-2 rounded cursor-pointer">
+						<a onClick={() => this._doneAttachingProperty()} className="no-underline bg-gold hover:bg-black text-white px-4 py-2 rounded cursor-pointer">
 							<i className="fa fa-check mr-2"></i>
 							Done
 						</a> :
-						<a onClick={() => this.attachingProperty()} className="no-underline bg-gold hover:bg-black text-white px-4 py-2 rounded cursor-pointer">
+						<a onClick={() => this._attachingProperty()} className="no-underline bg-gold hover:bg-black text-white px-4 py-2 rounded cursor-pointer">
 							<i className="fa fa-paperclip mr-2"></i>
 							Attach property
 						</a>

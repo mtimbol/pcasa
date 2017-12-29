@@ -57,13 +57,16 @@ $factory->define(App\Contact::class, function (Faker\Generator $faker) {
 $factory->define(App\Property::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
+        'reference_number' => 'SAMT-001',
         'property_number' => $faker->randomNumber,
         'developer' => $faker->sentence,
         'community' => $faker->city,
         'property_type' => 'VILLA',
+        'price' => $faker->randomNumber,
         'bedrooms' => 3,
-        'unit_type' => $faker->word,
+        'unit_type' => 'VILLA',
         'size' => 2500,
-        'view' => $faker->paragraph
+        'view' => $faker->paragraph,
+        'is_rented' => $faker->boolean,
     ];
 });

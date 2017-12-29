@@ -25,3 +25,4 @@ Route::put('properties/{property}', 'Api\PropertiesController@update');
 Route::get('contacts/{contact}/properties', 'Api\ContactPropertiesController@index');
 Route::post('contacts/{contact}/properties', 'Api\ContactPropertiesController@store');
 Route::delete('contacts/{contact}/properties', 'Api\ContactPropertiesController@destroy');
+Route::post('contacts/{contact}/notes', 'Api\ContactNotesController@store');

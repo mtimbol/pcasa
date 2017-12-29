@@ -52,7 +52,7 @@ class ContactLists extends window.React.Component
 				Object.assign({}, this.state.contacts, {
 					...this.state.contacts,
 					updated_contact
-				})				
+				})
 			}
 		}).catch(error => {
 			console.log('_updateContactStatus() error', error);

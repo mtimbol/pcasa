@@ -15,6 +15,11 @@ class Contact extends Model
     	'source', 'notes'
     ];
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'contact_id');
+    }
+
     public function properties()
     {
         return $this->belongsToMany(Property::class, 'property_contacts');
