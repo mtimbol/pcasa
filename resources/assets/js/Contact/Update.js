@@ -155,12 +155,28 @@ class UpdateContact extends window.React.Component
 										onChange={(e) => this.setState({ contact_source: e.target.value })}
 									>
 										<option value=""></option>
-										<option value="database">Database</option>
-										<option value="dubizzle">Dubizzle</option>
-										<option value="property-finder">Property Finder</option>
-										<option value="direct-call">Direct call</option>
+										<option value="company-database">Company Database</option>
+										<option value="direct-call">Direct Call</option>
+										<option value="walk-in">Walk-in</option>
 										<option value="referral">Referral</option>
-										<option value="others">Others</option>
+										<option value="agent">Agent</option>
+										<option value="website">Website</option>
+										<option value="newspapers-magazine">Newspapers - Magazines</option>
+										<option value="sms-campaign">SMS Campaign</option>
+										<option value="email-campaign">Email Campaign</option>
+										<option value="roadshow">Roadshow</option>
+										<option value="sign-boards">Sign Boards</option>
+										<option value="tv-radio">TV - Radio</option>
+										<option value="facebook">Facebook</option>
+										<option value="twitter">Twitter</option>
+										<option value="instagram">Instagram</option>
+										<option value="whatsapp">WhatsApp</option>
+										<option value="cold-calling">Cold Calling</option>
+										<option value="dubizzle">Dubizzle</option>
+										<option value="propertyfinder">PropertyFinder</option>
+										<option value="bayut">bayut</option>
+										<option value="just-property">Just Property</option>
+										<option value="other-sources">Other Sources</option>
 									</select>
 									<div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-slate">
 										<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
