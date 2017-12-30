@@ -123,11 +123,22 @@ class UpdateContact extends window.React.Component
 										onChange={(e) => this.setState({ contact_status: e.target.value })}
 									>
 										<option value="Please select">-</option>
-										<option value="buyer-leads">Buyer Leads</option>
-										<option value="landlord-leads">Landlord Leads</option>
-										<option value="tenant-leads">Tenant Leads</option>
+										<option value="buyer-lead-residential">Buyer LEAD - Residential</option>
+										<option value="buyer-lead-commercial">Buyer LEAD - Commercial</option>
+										<option value="landlord-lead-residential">Landlord LEAD - Residential</option>
+										<option value="landlord-lead-commercial">Ladlord LEAD - Commercial</option>
+										<option value="tenant-lead-residential">Tenant LEAD - Residential</option>
+										<option value="tenant-lead-commercial">Tenant LEAD - Commercial</option>
+										<option value="no-answer">No Answer</option>
+										<option value="wrong-number">Wrong Number / Out of Service</option>
+										<option value="busy-line">Busy Line</option>
+										<option value="switched-off">Switched OFF</option>
+										<option value="callback-request">Call Back request</option>
+										<option value="hangup-cancelled">Hang up / Cancelled</option>
 										<option value="follow-up">Follow up</option>
-										<option value="wrong-contact">Wrong Contact</option>
+										<option value="do-not-call-dnd">DO NOT CALL - DND</option>
+										<option value="not-interested-now">Not Interested NOW</option>
+										<option value="not-interested-at-all">Not Interested AT ALL</option>
 									</select>
 									<div className="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-slate">
 										<svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

@@ -80,35 +80,94 @@
                         </a>
                         <ul class="list-reset mt-3">
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'buyer-leads') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Buyer Leads
+                                <a href="{{ route('admin.leads.index', 'buyer-lead-residential') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Buyer LEAD - Residential
                                 </a>
                             </li>
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'landlord-leads') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Landlord Leads
-                                </a>
-                            </li>                            
-                            <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'tenant-leads') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Tenant Leads
+                                <a href="{{ route('admin.leads.index', 'buyer-lead-commercial') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Buyer LEAD - Commercial
                                 </a>
                             </li>
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'landlord-lead-residential') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Landlord LEAD - Residential
+                                </a>
+                            </li> 
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'landlord-lead-commercial') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Landlord LEAD - Commercial
+                                </a>
+                            </li>                                                                                    
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'tenant-lead-residential') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Tenant LEAD - Residential
+                                </a>
+                            </li>
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'tenant-lead-commercial') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Tenant LEAD - Commercial
+                                </a>
+                            </li>
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'no-answer') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    No Answer
+                                </a>
+                            </li> 
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'wrong-number') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Wrong Number / Out of Service
+                                </a>
+                            </li>
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'busy-line') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Busy Line
+                                </a>
+                            </li> 
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'switched-off') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Switched OFF
+                                </a>
+                            </li> 
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'callback-request') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Callback request
+                                </a>
+                            </li>
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'hangup-cancelled') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Hangup / Cancelled
+                                </a>
+                            </li>
+
                             <li class="mb-1">
                                 <a href="{{ route('admin.leads.index', 'follow-up') }}" class="no-underline text-grey-darker hover:text-gold">
                                     Follow up
                                 </a>
                             </li>     
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'dnd') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    DND
+                                <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    DO NOT CALL - DND
                                 </a>
                             </li>
                             <li class="mb-1">
-                                <a href="{{ route('admin.leads.index', 'wrong-contacts') }}" class="no-underline text-grey-darker hover:text-gold">
-                                    Wrong contacts
+                                <a href="{{ route('admin.leads.index', 'not-interested-now') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Not interested NOW
                                 </a>
-                            </li>                                                            
+                            </li> 
+
+                            <li class="mb-1">
+                                <a href="{{ route('admin.leads.index', 'not-interested-at-all') }}" class="no-underline text-grey-darker hover:text-gold">
+                                    Not interested AT ALL
+                                </a>
+                            </li>                             
                         </ul>                        
                     </li>
                 </ul>
