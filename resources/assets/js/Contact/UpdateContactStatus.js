@@ -105,7 +105,7 @@ class UpdateContactStatus extends React.Component
 							</div>	
 						</form>
 						<div className="absolute pin-t pin-r mr-1">
-							<a className="no-underline text-dark text-xs" onClick={() => this.setState({ showModal: !state.showModal })}>
+							<a className="no-underline cursor-pointer text-dark text-xs" onClick={() => this.setState({ showModal: !state.showModal })}>
 								<i className="fa fa-times-circle"></i>
 							</a>
 						</div>

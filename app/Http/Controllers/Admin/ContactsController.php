@@ -14,11 +14,15 @@ class ContactsController extends Controller
 		$alertTitle = 'Contacts';
 		$contacts = Contact::with(['properties' => function($query) {
 			$query->get(['community', 'name', 'property_number']);
-		}])->orderBy('name', 'asc')->get();
+		}, 'notes' => function($query) {
+			$query->orderBy('created_at', 'desc')->first();
+		}])->get();
+
+		// dd($contacts->toArray());
 
 	    JavaScript::put([
 	        'contacts' => $contacts,
-	    ]);		
+	    ]);
 		
 		return view('admin.contacts.index', compact('alertTitle'));
 	}

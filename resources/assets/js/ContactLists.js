@@ -7,6 +7,7 @@ import UpdateContact from './Contact/Update';
 import ContactProperties from './Contact/Properties';
 import UpdateContactCategory from './Contact/UpdateContactCategory';
 import UpdateContactStatus from './Contact/UpdateContactStatus';
+import ContactNotes from './Contact/Notes';
 
 class ContactLists extends window.React.Component
 {
@@ -132,7 +133,12 @@ class ContactLists extends window.React.Component
 							columns: [
 								{
 									Header: 'Notes',
-									// accessor: ''
+									accessor: 'notes',
+									Cell: row => {
+										return (
+											<ContactNotes contact_id={row.original.id} notes={row.original.notes} />
+										)
+									}									
 								}
 							]
 						}

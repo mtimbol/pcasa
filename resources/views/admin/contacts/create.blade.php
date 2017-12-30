@@ -7,12 +7,6 @@
 		<div>
 			<div class="px-6 py-6">
 				<p class="text-grey-dark leading-normal">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</p>
 
 				<!--Personal information-->
@@ -29,15 +23,26 @@
 					<div class="w-full">
 						<div class="flex mb-6">
 							<div class="w-1/2 mr-2">
-								<label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Contact Status</label>
+								<label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Contact Category / Type</label>
 								<div class="inline-block relative w-full">
 									<select class="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow">
 										<option value=""></option>
-										<option value="">DATABASE</option>
-										<option value="">LEAD</option>
-										<option value="">Potential</option>
-										<option value="">Follow up</option>
-										<option value="">Do not call</option>
+										<option value="buyer-lead-residential">Buyer LEAD - Residential</option>
+										<option value="buyer-lead-commercial">Buyer LEAD - Commercial</option>
+										<option value="landlord-lead-residential">Landlord LEAD - Residential</option>
+										<option value="landlord-lead-commercial">Ladlord LEAD - Commercial</option>
+										<option value="tenant-lead-residential">Tenant LEAD - Residential</option>
+										<option value="tenant-lead-commercial">Tenant LEAD - Commercial</option>
+										<option value="no-answer">No Answer</option>
+										<option value="wrong-number">Wrong Number / Out of Service</option>
+										<option value="busy-line">Busy Line</option>
+										<option value="switched-off">Switched OFF</option>
+										<option value="callback-request">Call Back request</option>
+										<option value="hangup-cancelled">Hang up / Cancelled</option>
+										<option value="follow-up">Follow up</option>
+										<option value="do-not-call-dnd">DO NOT CALL - DND</option>
+										<option value="not-interested-now">Not Interested NOW</option>
+										<option value="not-interested-at-all">Not Interested AT ALL</option>
 									</select>
 									<div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-slate">
 										<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -47,8 +52,39 @@
 								</div>							
 							</div>	
 							<div class="w-1/2 ml-2">
-								<label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Client Type</label>
-								<input class="shadow border rounded w-full px-3 py-2" />
+								<label class="text-grey text-xs font-semibold uppercase tracking-wide block mb-2">Contact Source</label>
+								<div class="inline-block relative w-full">
+									<select class="w-full block appearance-none bg-white border hover:border-grey px-3 py-2 rounded shadow">
+										<option value=""></option>
+										<option value="company-database">Company Database</option>
+										<option value="direct-call">Direct Call</option>
+										<option value="walk-in">Walk-in</option>
+										<option value="referral">Referral</option>
+										<option value="agent">Agent</option>
+										<option value="website">Website</option>
+										<option value="newspapers-magazine">Newspapers - Magazines</option>
+										<option value="sms-campaign">SMS Campaign</option>
+										<option value="email-campaign">Email Campaign</option>
+										<option value="roadshow">Roadshow</option>
+										<option value="sign-boards">Sign Boards</option>
+										<option value="tv-radio">TV - Radio</option>
+										<option value="facebook">Facebook</option>
+										<option value="twitter">Twitter</option>
+										<option value="instagram">Instagram</option>
+										<option value="whatsapp">WhatsApp</option>
+										<option value="cold-calling">Cold Calling</option>
+										<option value="dubizzle">Dubizzle</option>
+										<option value="propertyfinder">PropertyFinder</option>
+										<option value="bayut">bayut</option>
+										<option value="just-property">Just Property</option>
+										<option value="other-sources">Other Sources</option>										
+									</select>
+									<div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-slate">
+										<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+											<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+										</svg>
+									</div>
+								</div>								
 							</div>								
 						</div>
 						<div class="flex mb-6">			
