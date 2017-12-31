@@ -10,7 +10,7 @@ class ContactNotesController extends Controller
 {
 	public function index(Contact $contact)
 	{
-		return $contact->notes()->orderBy('created_at', 'desc')->first();
+		return $contact->notes()->orderBy('created_at', 'desc')->get();
 	}
 
     public function store(Contact $contact, Request $request)

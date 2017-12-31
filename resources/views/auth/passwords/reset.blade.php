@@ -13,7 +13,7 @@
                 <input type="email" class="shadow border rounded w-full px-3 py-2" />
             </div> 
             <div class="w-full mb-6 text-left">
-                <button class="text-white bg-blue hover:bg-blue-dark rounded px-4 py-2">Reset Password</button>
+                <button type="submit" class="text-white bg-blue hover:bg-blue-dark rounded px-4 py-2">Reset Password</button>
                 <a href="{{ route('register') }}" class="text-black px-4 py-2 no-underline">Register</button>
             </div> 
         </form>

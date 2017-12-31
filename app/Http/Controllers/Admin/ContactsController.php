@@ -15,7 +15,7 @@ class ContactsController extends Controller
 		$contacts = Contact::with(['properties' => function($query) {
 			$query->get(['community', 'name', 'property_number']);
 		}, 'notes' => function($query) {
-			$query->orderBy('created_at', 'desc')->first();
+			$query->orderBy('created_at', 'desc')->get();
 		}])->get();
 
 		// dd($contacts->toArray());

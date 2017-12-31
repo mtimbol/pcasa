@@ -15,7 +15,7 @@
                 <input type="email" class="shadow border rounded w-full px-3 py-2" />
             </div> 
             <div class="w-full text-left">
-                <button class="text-white bg-gold hover:bg-black rounded px-4 py-2">Send Password Reset Link</button>
+                <button type="submit" class="text-white bg-gold hover:bg-black rounded px-4 py-2">Send Password Reset Link</button>
                 <a href="{{ route('login') }}" class="text-grey-darker px-4 py-2 no-underline">Cancel</button>
             </div> 
         </form>

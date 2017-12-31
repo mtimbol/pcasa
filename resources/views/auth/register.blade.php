@@ -28,7 +28,7 @@
                 <input type="password" name="password_confirmation" class="shadow border rounded w-full px-3 py-2" />
             </div>             
             <div class="w-full text-left">
-                <button class="text-white bg-gold hover:bg-black rounded px-4 py-2">Register</button>
+                <button type="submit" class="text-white bg-gold hover:bg-black rounded px-4 py-2">Register</button>
                 <a href="{{ route('login') }}" class="text-grey-darker px-4 py-2 no-underline">Login</a>
             </div> 
         </form>

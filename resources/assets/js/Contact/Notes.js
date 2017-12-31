@@ -9,6 +9,7 @@ class ContactNotes extends React.Component
 
 		this.state = {
 			show_form: false,
+			show_all: false,
 			creating: false,
 			message: '',
 			notes: [],
@@ -57,7 +58,7 @@ class ContactNotes extends React.Component
 			.then(response => {
 				console.log(response);
 				this.setState({
-					notes: [response.data]
+					notes: response.data
 				})
 			}).catch(error => {
 				console.log('_getContactNotes error', error);
@@ -66,22 +67,29 @@ class ContactNotes extends React.Component
 
 	render()
 	{		
-		let contact_notes = this.state.notes.length > 0 ? this.state.notes[0].message : '';
-		// let contact_notes = this.state.notes.map((note, index) => {
-		// 	return (
-		// 		<p key={index} className="mb-2">{note.message}</p>
-		// 	)
-		// })
-
 		let state = this.state;
+		let latest_note = this.state.notes.length > 0 ? this.state.notes[0].message : '';
+		let notes_history = this.state.notes.map(note => {
+			return (
+				<li key={note.id} className="text-sm text-grey-darkest my-2">
+					<p className="flex flex-col">
+						{note.message}
+						<span className="text-xs text-grey-dark mt-1">{note.created_at}</span>
+					</p>
+				</li>
+			)
+		})
 
 		return (
 			<div>
-				{contact_notes}
-				<p className="text-center">
-					<a className="no-underline cursor-pointer" onClick={() => this.setState({ 'show_form': !state.show_form })}>
+				{latest_note}
+				<p className="text-center mt-2">
+					<a className="no-underline cursor-pointer mr-2" onClick={() => this.setState({ 'show_form': !state.show_form, 'show_all': false })}>
 						<i className="fa fa-plus-circle text-grey-dark"></i>
 					</a>
+					<a className="no-underline cursor-pointer ml-2" onClick={() => this.setState({ 'show_all': !state.show_all, 'show_form': false })}>
+						<i className="fa fa-eye text-grey-dark"></i>
+					</a>					
 				</p>
 				{
 					this.state.show_form ?				
@@ -111,6 +119,21 @@ class ContactNotes extends React.Component
 						</div>
 					</div> : ''
 				}
+
+				{
+					this.state.show_all ?				
+					<div className="p-4 w-48 h-48 mt-2 border overflow-scroll shadow bg-white absolute z-10">
+						<p className="pb-3"><strong className="font-normal text-grey text-sm">Notes History</strong></p>
+						<ul className="list-reset">
+							{notes_history}
+						</ul>
+						<div className="absolute pin-t pin-r mr-1">
+							<a className="no-underline cursor-pointer text-dark text-xs" onClick={() => this.setState({ show_form: !state.show_form })}>
+								<i className="fa fa-times-circle"></i>
+							</a>
+						</div>
+					</div> : ''
+				}				
 			</div>
 		)
 	}

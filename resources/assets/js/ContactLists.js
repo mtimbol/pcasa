@@ -50,10 +50,12 @@ class ContactLists extends window.React.Component
 				let updated_contact = Object.assign({}, selected_contact);
 				updated_contact[0]['contact_status'] = status;
 
-				Object.assign({}, this.state.contacts, {
+				let state = Object.assign({}, this.state.contacts, {
 					...this.state.contacts,
 					updated_contact
 				})
+
+				this.setState({ state })
 			}
 		}).catch(error => {
 			console.log('_updateContactStatus() error', error);

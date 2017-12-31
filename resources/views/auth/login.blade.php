@@ -30,7 +30,7 @@
                 </label>
             </div>            
             <div class="w-full text-left">
-                <button class="text-white bg-gold hover:bg-black rounded px-4 py-2">Login</button>
+                <button type="submit" class="text-white bg-gold hover:bg-black rounded px-4 py-2">Login</button>
                 <a href="{{ route('register') }}" class="text-grey-darker px-4 py-2 no-underline">Register</button>
             </div> 
         </form>
