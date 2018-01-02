@@ -68,12 +68,23 @@ class ImportContacts implements ShouldQueue
 
                 if ($property = Property::where('property_number', $row->property_number)->first()) {
                     // Skip
+                    $property->update([
+                        'name' => $row->subcommunity ?? null,
+                        'property_number' => $row->property_number ?? 'dummy',
+                        'developer' => $row->developer,
+                        'community' => $row->community,
+                        'property_type' => $row->property_type ?? null,
+                        'size' => $row->property_size ?? null,
+                        'property_details_1' => $row->property_details_1 ?? null,
+                        'property_details_2' => $row->property_details_2 ?? null,
+                    ]);
                 } else {
                     $property = Property::create([
                         'property_number' => $row->property_number ?? 'dummy',
                         'developer' => $row->developer,
                         'community' => $row->community,
-                        'subcommunity' => $row->subcommunity ?? null,
+                        'name' => $row->subcommunity ?? null,
+                        // 'subcommunity' => $row->subcommunity ?? null,
                         'property_type' => $row->property_type ?? null,
                         'size' => $row->property_size ?? null,
                         'property_details_1' => $row->property_details_1 ?? null,
