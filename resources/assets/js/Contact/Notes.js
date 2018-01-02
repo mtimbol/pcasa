@@ -19,9 +19,7 @@ class ContactNotes extends React.Component
 
 	componentDidMount()
 	{
-		this.setState({
-			notes: this.props.notes
-		})
+		this._getContactNotes(this.props.contact_id);
 	}
 
 	onSubmit(e) {
