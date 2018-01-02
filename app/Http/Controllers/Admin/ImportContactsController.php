@@ -16,14 +16,10 @@ class ImportContactsController extends Controller
 
     public function store(Request $request)
     {
-    	// $path = $request->file('csv')->store('imports');
-
     	$this->validate($request, [
     		'csv' => 'required'
     	]);
 
-    	// Storage::disk('local')->put($request->csv);
-
-        dispatch(new ImportContacts($request->csv));
+        dispatch(new ImportContacts($request->file('csv')->getRealPath()));
     }
 }

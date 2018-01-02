@@ -33,17 +33,17 @@ class ImportContacts extends React.Component
 			data: data
 		}).then(response => {
 			console.log(response);
-			// if (response.status === 200) {
-			// 	swal({
-			// 		title: 'Pcasa',
-			// 		text: 'Importing contacts has been successfully finished.',
-			// 		icon: 'success'
-			// 	})
-			// 	this.setState({
-			// 		formWasSubmitted: false,
-			// 		buttonText: 'Import'
-			// 	})				
-			// }
+			if (response.status === 200) {
+				swal({
+					title: 'Pcasa',
+					text: 'Importing contacts has been successfully finished.',
+					icon: 'success'
+				})
+				this.setState({
+					formWasSubmitted: false,
+					buttonText: 'Import'
+				})				
+			}
 		}).catch(error => {
 			// No file uploaded
 			if (error.response.status === 422) {				

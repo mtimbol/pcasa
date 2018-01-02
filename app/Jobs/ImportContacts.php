@@ -40,12 +40,12 @@ class ImportContacts implements ShouldQueue
      * @return void
      */
     public function handle(Excel $excel)
-    {        
-        $excel->load(public_path($this->file), function($contacts) {
+    {
+        $excel->load($this->file, function($contacts) {
             list($this->skippedContacts, $this->newContacts) = collect($contacts->all())->partition(function($contact) {
                 return Contact::whereEmail($contact->email)->count() > 0;
             });
-        });
+        }, null, true);
 
         foreach (collect($this->newContacts)->chunk(100) as $rows) {
             foreach ($rows as $row) {
