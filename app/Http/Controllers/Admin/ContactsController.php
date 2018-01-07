@@ -18,8 +18,6 @@ class ContactsController extends Controller
 			$query->orderBy('created_at', 'desc')->get();
 		}])->get();
 
-		// dd($contacts->toArray());
-
 	    JavaScript::put([
 	        'contacts' => $contacts,
 	    ]);

@@ -17,9 +17,10 @@ class ContactProperties extends window.React.Component
 
 	componentDidMount()
 	{
-		this.setState({
-			contactProperties: this.props.properties
-		})
+		console.log('ContactProperties props', this.props);
+		// this.setState({
+		// 	contactProperties: this.props.properties
+		// })
 
 		this._getAllProperties();
 	}
@@ -149,7 +150,7 @@ class ContactProperties extends window.React.Component
 						]}
 					/> :					
 					<ReactTable 
-						data={this.state.contactProperties}
+						data={this.props.properties}
 						defaultPageSize={5}
 						columns={[
 							{

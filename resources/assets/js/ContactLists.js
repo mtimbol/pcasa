@@ -138,19 +138,22 @@ class ContactLists extends window.React.Component
 									accessor: 'notes',
 									Cell: row => {
 										return (
-											<ContactNotes contact_id={row.original.id} />
+											<ContactNotes contact_id={row.original.id} notes={row.original.notes}/>
 										)
-									}									
+									}
 								}
 							]
 						}
 					]}
+		        	className="-striped -highlight"					
 					SubComponent={row => {
 						console.log('SubComponent', row);
+						let contact = row.original;
+						let properties = contact.properties;
 						return (
 							<div>
-								<UpdateContact contact={row.original} refreshContacts={() => this.getAllContacts()} />								
-								<ContactProperties contact={row.original} properties={row.original.properties} />
+								<UpdateContact contact={contact} refreshContacts={() => this.getAllContacts()} />								
+								<ContactProperties contact={contact} properties={properties} />
 							</div>
 						)
 					}}

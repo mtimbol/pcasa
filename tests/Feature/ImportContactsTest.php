@@ -4,6 +4,8 @@ namespace Feature;
 
 use App\Events\ContactsWasImported;
 use App\Jobs\ImportContacts;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -49,9 +51,8 @@ class ImportContactsTest extends TestCase
         // User should be logged-in.
         // User should have a permission to import contacts.
 
-        // Upload contacts.csv
         $response = $this->json('POST', '/admin/contacts/import', [
-            'csv' => '/import/contacts.csv'
+            'csv' => new UploadedFile(public_path('import/contacts.csv'), 'contacts.csv', null, null, null, true)
         ]);
 
         // $response->assertStatus(200);
@@ -70,7 +71,6 @@ class ImportContactsTest extends TestCase
             'property_number' => 'J-316',
             'developer' => 'EMAAR',
             'community' => 'RM2 Mira Oasis',
-            'size' => "2,359",
         ]);
 
         $this->assertDatabaseHas('property_contacts', [

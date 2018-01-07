@@ -10,7 +10,7 @@ class ContactPropertiesController extends Controller
 {
     public function index(Contact $contact)
     {
-        return $contact->properties;
+        return $contact->properties->unique();
     }
 
     public function store(Request $request, Contact $contact)

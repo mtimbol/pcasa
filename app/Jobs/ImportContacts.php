@@ -42,63 +42,63 @@ class ImportContacts implements ShouldQueue
     public function handle(Excel $excel)
     {
         $excel->load($this->file, function($contacts) {
-            list($this->skippedContacts, $this->newContacts) = collect($contacts->all())->partition(function($contact) {
-                return Contact::whereEmail($contact->email)->count() > 0;
-            });
-        }, null, true);
+            $contact_collections = collect($contacts->all())->unique(function($item) {
+                return $item['mobile'].$item['property_number'];
+            })->values();
 
-        foreach (collect($this->newContacts)->chunk(100) as $rows) {
-            foreach ($rows as $row) {
-                $contact = Contact::firstOrCreate([
-                    'contact_status' => null,
-                    'client_type' => $row->client_type ?? null,
-                    'salutation' => $row->salutation ?? null,
-                    'name' => $row->full_name ?? null,
-                    'first_name' => explode(' ', $row->full_name)[0] ?? null,
-                    'last_name' => explode(' ', $row->full_name)[1] ?? null,
-                    'nationality' => $row->nationality ?? null,
-                    'email' => $row->email,
-                    'mobile' => $row->mobile,
-                    'phone' => $row->phone ?? null,
-                    'fax' => $row->fax ?? null,
-                    'passport_number' => $row->passport_number ?? null,
-                    'source' => $row->database_source ?? null,
-                    'notes' => $row->notes ?? null,
-                ]);
+            foreach ($contact_collections->chunk(20) as $rows) {
+                foreach ($rows as $row) {
+                    $mobile = (string) $row->mobile;
+                    if ($contact = Contact::whereMobile($mobile)->first()) {
+                        $this->skippedContacts[] = $row;
+                    } else {
+                        $contact = Contact::firstOrCreate([
+                            'contact_status' => $row->status ?? null,
+                            'client_type' => $row->client_type ?? null,
+                            'salutation' => $row->salutation ?? null,
+                            'name' => $row->full_name ?? null,
+                            'nationality' => $row->nationality ?? null,
+                            'email' => $row->email ?? null,
+                            'mobile' => $row->mobile,
+                            'phone' => $row->phone ?? null,
+                            'fax' => $row->fax ?? null,
+                            'passport_number' => $row->passport_number ?? null,
+                            'source' => $row->database_source ?? null,
+                        ]);
+                    }
 
-                if ($property = Property::where('property_number', $row->property_number)->first()) {
-                    // Skip
-                    $property->update([
-                        'name' => $row->subcommunity ?? null,
-                        'property_number' => $row->property_number ?? 'dummy',
-                        'developer' => $row->developer,
-                        'community' => $row->community,
-                        'property_type' => $row->property_type ?? null,
-                        'size' => $row->property_size ?? null,
-                        'property_details_1' => $row->property_details_1 ?? null,
-                        'property_details_2' => $row->property_details_2 ?? null,
-                    ]);
-                } else {
-                    $property = Property::create([
-                        'property_number' => $row->property_number ?? 'dummy',
-                        'developer' => $row->developer,
-                        'community' => $row->community,
-                        'name' => $row->subcommunity ?? null,
-                        // 'subcommunity' => $row->subcommunity ?? null,
-                        'property_type' => $row->property_type ?? null,
-                        'size' => $row->property_size ?? null,
-                        'property_details_1' => $row->property_details_1 ?? null,
-                        'property_details_2' => $row->property_details_2 ?? null,
-                    ]);
+                    if ($property = Property::where('property_number', $row->property_number)->first()) {
+                        // Skip
+                    } else {
+                        $property = Property::create([
+                            'property_number' => $row->property_number ?? '',
+                            'developer' => $row->developer ?? null,
+                            'community' => $row->community ?? null,
+                            'name' => $row->subcommunity ?? null,
+                            // 'subcommunity' => $row->subcommunity ?? null,
+                            'property_type' => $row->property_type ?? null,
+                            'size' => $row->property_size ?? null,
+                            'property_details_1' => $row->property_details_1 ?? null,
+                            'property_details_2' => $row->property_details_2 ?? null,
+                        ]);
+                    }
+
+                    if (!$contact->properties()->where('property_id', $property->id)->first()) {
+                        $contact->properties()->attach($property);
+                    }
+
+                    if (!empty($row->notes)) {
+                        if ($contact->notes()->whereMessage($row->notes)->count() === 0) {
+                            $contact->notes()->create([
+                                'user_id' => 1,
+                                'message' => $row->notes
+                            ]);
+                        }
+                    }
                 }
-
-                $property->contacts()->attach($contact); 
             }
-        }
+        });
 
         event(new ContactsWasImported($this->skippedContacts));
-        
-        return $this->skippedContacts;
-
     }
 }

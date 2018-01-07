@@ -17,9 +17,20 @@ class ContactNotes extends React.Component
 		}
 	}
 
-	componentDidMount()
+	shouldComponentUpdate(nextProps, nextState)
 	{
-		this._getContactNotes(this.props.contact_id);
+		console.log('this props', this.props);
+		console.log('nextProps', nextProps);
+		console.log('nextState', nextState);
+
+		return true;
+		// console.log('componentDidMount of ContactNotes.', this.props);
+
+		// this._getContactNotes(this.props.contact_id);
+
+		// this.setState({
+		// 	notes: this.props.notes
+		// })
 	}
 
 	onSubmit(e) {
@@ -66,8 +77,8 @@ class ContactNotes extends React.Component
 	render()
 	{		
 		let state = this.state;
-		let latest_note = this.state.notes.length > 0 ? this.state.notes[0].message : '';
-		let notes_history = this.state.notes.map(note => {
+		let latest_note = this.props.notes.length > 0 ? this.props.notes[0].message : '';
+		let notes_history = this.props.notes.map(note => {
 			return (
 				<li key={note.id} className="text-sm text-grey-darkest my-2">
 					<p className="flex flex-col">
@@ -85,12 +96,15 @@ class ContactNotes extends React.Component
 					<a className="no-underline cursor-pointer mr-2" onClick={() => this.setState({ 'show_form': !state.show_form, 'show_all': false })}>
 						<i className="fa fa-plus-circle text-grey-dark"></i>
 					</a>
-					<a className="no-underline cursor-pointer ml-2" onClick={() => this.setState({ 'show_all': !state.show_all, 'show_form': false })}>
-						<i className="fa fa-eye text-grey-dark"></i>
-					</a>					
+					{
+						this.props.notes.length > 0 ?					
+						<a className="no-underline cursor-pointer ml-2" onClick={() => this.setState({ 'show_all': !state.show_all, 'show_form': false })}>
+							<i className="fa fa-eye text-grey-dark"></i>
+						</a> : ''
+					}
 				</p>
 				{
-					this.state.show_form ?				
+					state.show_form ?				
 					<div className="p-4 w-48 mt-2 border shadow bg-white absolute z-10">
 						<p className="pb-3"><strong className="font-normal text-grey text-sm">Create note</strong></p>
 						<form method="POST" className="relative" onSubmit={this.onSubmit.bind(this)}>
@@ -119,7 +133,7 @@ class ContactNotes extends React.Component
 				}
 
 				{
-					this.state.show_all ?				
+					state.show_all ?				
 					<div className="p-4 w-48 h-48 mt-2 border overflow-scroll shadow bg-white absolute z-10">
 						<p className="pb-3"><strong className="font-normal text-grey text-sm">Notes History</strong></p>
 						<ul className="list-reset">
