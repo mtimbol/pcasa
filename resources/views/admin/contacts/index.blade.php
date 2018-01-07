@@ -3,7 +3,7 @@
 @section('content')
 	<div class="w-full bg-white rounded shadow">
 		<div class="px-6 pt-6">
-			<h1 class="text-grey-darker text-2xl font-semibold pb-4">Contacts</h1>
+			<h1 class="text-grey-darker text-2xl font-semibold pb-4">Contacts <small>({{ $total_contacts }})</small></h1>
 			<div class="flex justify-between">
 				<div>
 					<button class="bg-white border border-solid border-grey-light shadow py-2 px-4 rounded text-grey-dark hover:text-black">

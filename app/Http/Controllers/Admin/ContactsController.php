@@ -21,8 +21,10 @@ class ContactsController extends Controller
 	    JavaScript::put([
 	        'contacts' => $contacts,
 	    ]);
+
+		$total_contacts = $contacts->count();
 		
-		return view('admin.contacts.index', compact('alertTitle'));
+		return view('admin.contacts.index', compact('alertTitle', 'total_contacts'));
 	}
 
 	public function show($contact)
