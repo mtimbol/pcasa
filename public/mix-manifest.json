@@ -1,10 +1,10 @@
 {
-    "/js/contact-lists.js": "/js/contact-lists.js",
-    "/js/ImportContacts.js": "/js/ImportContacts.js",
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/public.css": "/css/public.css",
-    "/css/vendor.css": "/css/vendor.css",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/alert.js": "/js/alert.js"
+    "/js/contact-lists.js": "/js/contact-lists.js?id=fdcab4c3474717cd109b",
+    "/js/ImportContacts.js": "/js/ImportContacts.js?id=27d075e549676d43ef85",
+    "/js/app.js": "/js/app.js?id=73a85d187c9d33c7b704",
+    "/css/app.css": "/css/app.css?id=66dcfd65d3ec41da8e75",
+    "/css/public.css": "/css/public.css?id=df536018c529eacecf51",
+    "/css/vendor.css": "/css/vendor.css?id=bf2a3f80b47be12e4a45",
+    "/js/vendor.js": "/js/vendor.js?id=14c2149e7aab29de88a1",
+    "/js/alert.js": "/js/alert.js?id=9b292853b260f636512e"
 }

@@ -29,7 +29,7 @@
 @endsection
 
 @section('footer_scripts')
-	<script src="/js/alert.js"></script>
-	<script src="/js/contact-lists.js"></script>
+	<script src="{{ mix('js/alert.js') }}"></script>
+	<script src="{{ mix('js/contact-lists.js') }}"></script>
 	@include('flash')
 @endsection

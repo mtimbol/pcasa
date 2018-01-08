@@ -10,5 +10,5 @@
 @endsection
 
 @section('footer_scripts')
-	<script src="/js/ImportContacts.js"></script>
+	<script src="{{ mix('js/ImportContacts.js') }}"></script>
 @endsection

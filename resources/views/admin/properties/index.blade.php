@@ -63,6 +63,6 @@
 @endsection
 
 @section('footer_scripts')
-	<script src="/js/alert.js"></script>
+	<script src="{{ mix('js/alert.js') }}"></script>
 	@include('flash')
 @endsection

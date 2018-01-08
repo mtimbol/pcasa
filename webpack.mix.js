@@ -25,4 +25,5 @@ mix.react('resources/assets/js/ImportContacts.js', 'public/js')
 		postCss: [ tailwindcss('./tailwind.js') ]
 	});
 mix.copy('./node_modules/font-awesome/fonts', 'public/fonts');
+mix.version();
 

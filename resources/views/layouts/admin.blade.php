@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/vendor.css" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
 
     @yield('header_styles')
 </head>
@@ -251,8 +251,8 @@
     </div>
 
     @include('footer')
-    <script src="/js/app.js"></script>
-    <script src="/js/vendor.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
     @yield('footer_scripts')
 </body>
 </html>

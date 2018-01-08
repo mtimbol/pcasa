@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/vendor.css" rel="stylesheet">
-    <link href="/css/public.css" rel="stylesheet">
+    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/public.css') }}" rel="stylesheet">
 </head>
 <body class="@yield('bodyClass')">
     <?php /*
