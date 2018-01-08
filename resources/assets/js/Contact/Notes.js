@@ -17,20 +17,10 @@ class ContactNotes extends React.Component
 		}
 	}
 
-	shouldComponentUpdate(nextProps, nextState)
+	componentDidMount()
 	{
-		console.log('this props', this.props);
-		console.log('nextProps', nextProps);
-		console.log('nextState', nextState);
-
-		return true;
-		// console.log('componentDidMount of ContactNotes.', this.props);
-
-		// this._getContactNotes(this.props.contact_id);
-
-		// this.setState({
-		// 	notes: this.props.notes
-		// })
+		console.log(Object.keys(this.props.notes).length);
+		// console.log('Notes props', this.props);
 	}
 
 	onSubmit(e) {
@@ -77,17 +67,22 @@ class ContactNotes extends React.Component
 	render()
 	{		
 		let state = this.state;
-		let latest_note = this.props.notes.length > 0 ? this.props.notes[0].message : '';
-		let notes_history = this.props.notes.map(note => {
-			return (
-				<li key={note.id} className="text-sm text-grey-darkest my-2">
-					<p className="flex flex-col">
-						{note.message}
-						<span className="text-xs text-grey-dark mt-1">{note.created_at}</span>
-					</p>
-				</li>
-			)
-		})
+		let latest_note = '';
+		let notes_history = '';
+
+		if (this.props.notes.length > 0) {
+			latest_note = this.props.notes[0].message;
+			notes_history = this.props.notes.map(note => {
+				return (
+					<li key={note.id} className="text-sm text-grey-darkest my-2">
+						<p className="flex flex-col">
+							{note.message}
+							<span className="text-xs text-grey-dark mt-1">{note.created_at}</span>
+						</p>
+					</li>
+				)
+			})
+		}
 
 		return (
 			<div>

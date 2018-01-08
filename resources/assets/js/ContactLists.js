@@ -138,7 +138,7 @@ class ContactLists extends window.React.Component
 									accessor: 'notes',
 									Cell: row => {
 										return (
-											<ContactNotes contact_id={row.original.id} notes={row.original.notes}/>
+											<ContactNotes contact_id={row.original.id} notes={row.original.notes ? row.original.notes : []}/>
 										)
 									}
 								}
