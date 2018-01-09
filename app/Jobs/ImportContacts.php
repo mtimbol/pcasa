@@ -56,7 +56,7 @@ class ImportContacts implements ShouldQueue
                             'contact_status' => $row->status ?? null,
                             'client_type' => $row->client_type ?? null,
                             'salutation' => $row->salutation ?? null,
-                            'name' => $row->full_name ?? null,
+                            'name' => $row->full_name ?? 'undefined',
                             'nationality' => $row->nationality ?? null,
                             'email' => $row->email ?? null,
                             'mobile' => $row->mobile,
