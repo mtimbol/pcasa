@@ -118,9 +118,11 @@ class ContactLists extends window.React.Component
 								{
 									Header: 'Mobile',
 									accessor: 'mobile',
-									filterMethod: (filter, row) => 
-										row[filter.id].startsWith(filter.value) ||
-										row[filter.id].endsWith(filter.value)
+									// filterMethod: (filter, row) => 
+									// 	row[filter.id].startsWith(filter.value) ||
+									// 	row[filter.id].endsWith(filter.value),
+									filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['mobile'] }),
+									filterAll: true,
 								},
 								{
 									Header: 'Nationality',
