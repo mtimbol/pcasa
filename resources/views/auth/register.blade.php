@@ -9,6 +9,8 @@
         <img src="/images/logo.png" alt="Pcasa" title="Pcasa" />
     </div>
     <div class="w-1/3 bg-white shadow p-6">
+        <p class="text-center">Register: Disabled for now</p>
+        <?php /*
         <form method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
             <div class="w-full mb-6">
@@ -32,6 +34,7 @@
                 <a href="{{ route('login') }}" class="text-grey-darker px-4 py-2 no-underline">Login</a>
             </div> 
         </form>
+        */ ?>
     </div>
 </div>
 
