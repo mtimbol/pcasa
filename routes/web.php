@@ -13,7 +13,7 @@
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function() {
 	Route::get('/', 'Admin\AdminController@index')->name('index');
 
 	// Import Contacts
