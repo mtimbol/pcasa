@@ -153,7 +153,7 @@
                                 </a>
                             </li>     
                             <li class="mb-2">
-                                <a href="{{ route('admin.leads.index', 'do-not-call') }}" class="no-underline text-grey-darker hover:text-gold">
+                                <a href="{{ route('admin.leads.index', 'do-not-call-dnd') }}" class="no-underline text-grey-darker hover:text-gold">
                                     DO NOT CALL - DND
                                 </a>
                             </li>
