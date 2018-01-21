@@ -46,7 +46,7 @@ class ImportContacts implements ShouldQueue
                 return $item['mobile'].$item['property_number'];
             })->values();
 
-            foreach ($contact_collections->chunk(500) as $rows) {
+            foreach ($contact_collections->chunk(100) as $rows) {
                 foreach ($rows as $row) {
                     $mobile = (string) $row->mobile;
                     if ($contact = Contact::whereMobile($mobile)->first()) {
