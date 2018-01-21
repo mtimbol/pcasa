@@ -27,6 +27,6 @@ class ImportContactsController extends Controller
 
         $file = $request->file('csv')->getRealPath();
         
-        dispatch(new ImportContacts($file))->onQueue('simsargenie');
+        dispatch(new ImportContacts($file));
     }
 }
